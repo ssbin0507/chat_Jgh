@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강호유랑록(江湖遊浪錄)</title>
+    <!-- 고풍스러운 명조/바탕체 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-wooden: #1a120c;
+            --paper-bg: #f2e9d8;
+            --paper-texture: #e8dbce;
+            --ink-black: #2b2521;
+            --ink-dark: #12100e;
+            --vermilion: #9e2a2b;
+            --gold-accent: #8c6d23;
+            --border-line: #5c4333;
+            --font-title: 'Noto Serif KR', serif;
+            --font-body: 'Gowun Batang', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-wooden);
+            background-image: radial-gradient(circle at 50% 50%, rgba(45, 30, 20, 0.8) 0%, rgba(15, 10, 5, 0.95) 100%);
+            color: var(--ink-black);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        /* 고서적 프레임 */
+        .book-container {
+            width: 100%;
+            max-width: 1080px;
+            background-color: var(--paper-bg);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(180, 150, 110, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(100, 70, 40, 0.15) 0%, transparent 50%);
+            border: 12px solid #3d2b1f;
+            outline: 2px solid var(--gold-accent);
+            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 80px rgba(100, 75, 45, 0.3);
+            position: relative;
+            padding: 40px;
+        }
+
+        /* 서책 내부 실선 테두리 */
+        .book-inner-border {
+            border: 2px solid var(--border-line);
+            padding: 30px;
+            position: relative;
+            min-height: 750px;
+        }
+
+        /* 헤더 / 제목 */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px double var(--border-line);
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        .book-title {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--ink-dark);
+            letter-spacing: 6px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .book-subtitle {
+            font-size: 1.05rem;
+            color: var(--vermilion);
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        /* 서책 색인(책갈피) 형태의 네비게이션 */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-line);
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background-color: #d9cbb7;
+            border: 1px solid var(--border-line);
+            border-bottom: 2px solid var(--border-line);
+            color: var(--ink-black);
+            font-family: var(--font-title);
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 8px 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(255,255,255,0.5);
+        }
+
+        .tab-btn:hover {
+            background-color: #c9b8a1;
+            color: var(--vermilion);
+        }
+
+        .tab-btn.active {
+            background-color: var(--vermilion);
+            color: #fff;
+            border-color: var(--vermilion);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        /* 장(페이지) 컨텐츠 */
+        .page-content {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 섹션 제목 */
+        .chapter-title {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            color: var(--vermilion);
+            border-bottom: 1px solid var(--border-line);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chapter-title::before {
+            content: "印";
+            font-size: 1rem;
+            background-color: var(--vermilion);
+            color: #fff;
+            padding: 0 6px;
+            border-radius: 2px;
+            font-family: serif;
+        }
+
+        /* 서책 스타일 박스 */
+        .scroll-box {
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--border-line);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        /* 목록 및 강조 */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 6px;
+        }
+
+        ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--vermilion);
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: var(--vermilion);
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 1px 6px;
+            border-radius: 2px;
+            font-weight: bold;
+            margin-left: 6px;
+        }
+
+        .badge-red { background-color: var(--vermilion); color: #fff; }
+        .badge-dark { background-color: var(--ink-black); color: #fff; }
+        .badge-gold { background-color: var(--gold-accent); color: #fff; }
+
+        /* 인물 전용 태그 카드 */
+        .char-card {
+            background-color: rgba(232, 219, 206, 0.6);
+            border: 1px solid var(--border-line);
+            padding: 15px;
+            border-left: 4px solid var(--border-line);
+            transition: all 0.2s ease;
+        }
+
+        .char-card:hover {
+            border-left-color: var(--vermilion);
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .char-head {
+            font-family: var(--font-title);
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--ink-dark);
+            border-bottom: 1px dashed var(--border-line);
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .char-info {
+            font-size: 0.85rem;
+            color: var(--gold-accent);
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .char-desc {
+            font-size: 0.9rem;
+            color: #3d352e;
+        }
+
+        /* 표 디자인 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        th, td {
+            border: 1px solid var(--border-line);
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgba(158, 42, 43, 0.1);
+            color: var(--vermilion);
+            font-family: var(--font-title);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-line);
+            font-size: 0.85rem;
+            color: #6e5d4f;
+        }
+
+        @media (max-width: 768px) {
+            .book-container { padding: 15px; }
+            .book-inner-border { padding: 15px; }
+            .book-title { font-size: 2.1rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .tab-btn { padding: 6px 12px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="book-container">
+        <div class="book-inner-border">
+            
+            <!-- 서책 헤더 -->
+            <header>
+                <div class="book-title">江湖遊浪錄</div>
+                <div class="book-subtitle">― 강호 유랑 및 무림 세계관 대백과 ―</div>
+            </header>
+
+            <!-- 목차 탭 (책갈피) -->
+            <nav>
+                <button class="tab-btn active" onclick="openPage('p-intro')">제1장. 서문 및 총론</button>
+                <button class="tab-btn" onclick="openPage('p-rule')">제2장. 규율 및 예법</button>
+                <button class="tab-btn" onclick="openPage('p-martial')">제3장. 무공 및 경지</button>
+                <button class="tab-btn" onclick="openPage('p-factions')">제4장. 문파 및 계절</button>
+                <button class="tab-btn" onclick="openPage('p-chars')">제5장. 강호 인물록</button>
+                <button class="tab-btn" onclick="openPage('p-spirit')">제6장. 영물 및 비경</button>
+            </nav>
+
+            <!-- 제1장. 서문 및 총론 -->
+            <div id="p-intro" class="page-content active">
+                <h2 class="chapter-title">제1장. 강호 유랑의 목적 및 총론</h2>
+                
+                <div class="scroll-box">
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">[유랑의 목적 (GOAL)]</h3>
+                    <p>강호를 자유롭게 유랑하며 각 지역·문파·세력의 다양한 인물들과 관계를 맺고, 일상·여행·탐험·사건을 경험하며 내공과 무공을 익혀 성장해가는 몰입형 무협 Role-play를 제공합니다.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="scroll-box">
+                        <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">세계관 기본 설정</h3>
+                        <ul>
+                            <li><span class="highlight">장르:</span> 무협</li>
+                            <li><span class="highlight">배경:</span> 명나라 기반의 무림·강호</li>
+                            <li><span class="highlight">관무불가침(官武不侵):</span> 관가는 무림의 일에 관여하지 아니함.</li>
+                            <li><span class="highlight">성인 관례:</span> 男 = 20세부터 / 女 = 15세부터</li>
+                        </ul>
+                    </div>
+
+                    <div class="scroll-box">
+                        <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">화폐 및 물가</h3>
+                        <ul>
+                            <li><span class="highlight">화폐 단위:</span> 푼(철전) &lt; 냥(은자) &lt; 금(금자)</li>
+                            <li><span class="highlight">환율:</span> 1,000푼 = 1냥 / 20냥 = 1금</li>
+                            <li><span class="highlight">원보:</span> 말안장 모양 주괴 (은원보=50냥, 금원보=50금) / 전표(수표)</li>
+                            <li><span class="highlight">물가 예시:</span> 식당 식사 = 5푼~50푼 / 비옥한 밭 30평 = 7~8냥</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scroll-box">
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">도량형 및 신분증표</h3>
+                    <p><strong>[길이]</strong> 1치 = 3.03cm | 1척 = 10치 (약 30.3cm) | 1장 = 10척 (약 3.03m) | 1리 = 약 400m</p>
+                    <p><strong>[옥패(玉牌)]</strong> 세가·대문파·흑점 등에서 신분을 보증하는 패 (예: 남궁세가=금옥패, 흑점=흑옥패)</p>
+                </div>
+            </div>
+
+            <!-- 제2장. 규율 및 예법 -->
+            <div id="p-rule" class="page-content">
+                <h2 class="chapter-title">제2장. 강호 예법 및 전문 용어</h2>
+
+                <div class="scroll-box">
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">강호 호칭 규율</h3>
+                    <p style="margin-bottom: 10px; font-size: 0.9rem; color: var(--vermilion);">※ 비가족 간 현대식 호칭은 엄금하며 무협식 호칭을 우선 사용합니다.</p>
+                    <div class="grid-3">
+                        <div>
+                            <strong class="highlight">일반 호칭</strong>
+                            <ul>
+                               <li>젊은 女: 소저·낭자(친분↑)</li>
+                               <li>젊은 男: 소협·공자(친분↑)</li>
+                               <li>대협: 실력/명망 높은 무인</li>
+                               <li>선배: 연배/배분 높은 무인</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong class="highlight">사문(師門) 호칭</strong>
+                            <ul>
+                                <li>스승: 사부(師父) / 사조 / 태사조</li>
+                                <li>사부 배우자: 사부(男) / 사모(女)</li>
+                                <li>사부의 동문: 사백(선배) / 사숙(후배)</li>
+                                <li>동문: 사형·사저(선배), 사제·사매(후배)</li>
+                                <li>최고선배: 대사형 / 대사저</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong class="highlight">가족 및 애칭</strong>
+                            <ul>
+                                <li>큰부모: 백부 / 백모</li>
+                                <li>작은부모: 숙부 / 숙모</li>
+                                <li>배우자: 부인 / 상공</li>
+                                <li>가가(哥哥): 친한 연상 男·연인</li>
+                                <li>애칭: 아+이름 끝 (예: 당이현→아현)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scroll-box">
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">강호 용어 정리</h3>
+                    <div class="grid-2">
+                        <ul>
+                            <li><span class="highlight">심마:</span> 내면의 어둠/마음의 병. 심해지면 주화입마에 이름.</li>
+                            <li><span class="highlight">도호:</span> 도가 계열 도사들의 법명.</li>
+                            <li><span class="highlight">별호:</span> 세간에 알려진 별칭.</li>
+                            <li><span class="highlight">천하제일인:</span> 당대 최강자.</li>
+                            <li><span class="highlight">후기지수:</span> 차세대 유망주 무인.</li>
+                        </ul>
+                        <ul>
+                            <li><span class="highlight">살수 / 표사 / 표국:</span> 암살자 / 호송무인 / 호송조직.</li>
+                            <li><span class="highlight">단수 / 대식:</span> 남성 간 애정 / 여성 간 애정을 뜻하는 용어.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 제3장. 무공 및 경지 -->
+            <div id="p-martial" class="page-content">
+                <h2 class="chapter-title">제3장. 무공 체계 및 경지 분류</h2>
+
+                <div class="scroll-box">
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">무공의 구성 및 초식</h3>
+                    <div class="grid-2">
+                        <ul>
+                            <li><span class="highlight">내공:</span> 체내 축적 기(氣) [60년 = 1갑자]</li>
+                            <li><span class="highlight">외공 / 심법 / 경공:</span> 신체단련 / 내공축적법 / 속도·반응</li>
+                            <li><span class="highlight">운기조식:</span> 내력 순환 회복 (실패 시 주화입마)</li>
+                            <li><span class="highlight">환골탈태 / 반로환동:</span> 최적화 육체 개조 / 전성기 회춘</li>
+                        </ul>
+                        <ul>
+                            <li><span class="highlight">검기 / 검사:</span> 기를 무기에 밀어넣음 / 실처럼 유형화</li>
+                            <li><span class="highlight">검강 / 검환:</span> 검기 뭉쳐 유형화 / 구 형태 압축</li>
+                            <li><span class="highlight">이기어검 / 어검비행:</span> 원격 검 조종 / 검 타고 비행</li>
+                            <li><span class="highlight">호신강기 / 무형검:</span> 내공 갑옷 방어 / 기로 무기 형성</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scroll-box">
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">경지 단계 및 진입 조건</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>경지</th>
+                                <th>진입 조건 및 주요 특징</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>삼류 ~ 일류</strong></td>
+                                <td>갓 입문(삼류) → 단전 형성(이류) → 범인의 한계 및 기로 무기 강화(일류).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>절정 (絶頂)</strong></td>
+                                <td>내공 운용 자유자재, 검기 및 검사 발출 가능.</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="highlight">초절정 (超絶頂)</strong></td>
+                                <td><strong>조건:</strong> 주력무공 대성 + 무공이치 체득 + 실전응용.<br>검강, 신검합일, 환골탈태, 호신강기.</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="highlight">조화경 / 화경</strong></td>
+                                <td><strong>조건:</strong> 여러 무공이치 조화 + 자기 무도 정립.<br>허공섭물, 이기어검, 반로환동, 무공통달.</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="highlight">현경 (玄境)</strong></td>
+                                <td><strong>조건:</strong> 기존 무공 틀 초월 + 독자 무도 완성.<br>무형검 운용, 극난의 경지.</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="highlight">생사경 (生死境)</strong></td>
+                                <td><strong>조건:</strong> 생사관 초월 + 인간한계 깨달음.<br>불로장생, 수명 초월, 살아있는 신선.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size:0.85rem; margin-top:8px; color:var(--vermilion);">※ 경지 차이 2단계 이상 시 극복/승리 확률 극히 저하.</p>
+                </div>
+
+                <div class="scroll-box">
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">무공 속성 및 상극 관계</h3>
+                    <p><strong>[계열]</strong> 正(정기·벽사) | 魔(마기·패도) | 無(중립)</p>
+                    <p><strong>[종류]</strong> 陰(음한) | 陽(열기) | 毒(독성) | 神(정신/심상) | 淸(순수유지/배척)</p>
+                    <p style="color:var(--vermilion); font-weight:bold; margin-top:5px;">[상극] 陰 ↔ 陽 | 淸 ↔ 毒 | 正 ↔ 魔 (동시 습득 시 내력충돌 및 주화입마 / 전환 시 기존 내공 폐기 필수)</p>
+                </div>
+            </div>
+
+            <!-- 제4장. 문파 및 계절 -->
+            <div id="p-factions" class="page-content">
+                <h2 class="chapter-title">제4장. 강호 세력 및 고정 연회</h2>
+
+                <div class="grid-2">
+                    <div class="scroll-box">
+                        <h3 class="highlight">정파 (正派) - 무림맹</h3>
+                        <p>도덕·명분·협의 중시 및 전통 질서 수호.</p>
+                        <ul style="margin-top:8px;">
+                            <li><strong>구파일방:</strong> 소림사, 무당파, 아미파, 곤륜파, 화산파, 점창파, 종남파, 청성파, 해남파 + 개방</li>
+                            <li><strong>오대세가:</strong> 남궁세가, 사천당가, 하북팽가, 모용세가, 제갈세가</li>
+                        </ul>
+                    </div>
+
+                    <div class="scroll-box">
+                        <h3 class="highlight">사파 (邪派) - 사도련</h3>
+                        <p>목적을 위해 수단·방법을 가리지 않는 변칙성.</p>
+                        <ul style="margin-top:8px;">
+                            <li><strong>연합 세력:</strong> 수라방, 하오문, 녹림, 장강수로채, 흑점</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="scroll-box">
+                        <h3 class="highlight">마교, 혈교 및 새외</h3>
+                        <ul>
+                            <li><span class="highlight">천마신교(마교):</span> 천마 숭배, 패도 마공.</li>
+                            <li><span class="highlight">혈교:</span> 혈신 숭배, 피를 사용한 살육 및 인신공양.</li>
+                            <li><span class="highlight">새외무림:</span> 북해빙궁, 남만야수궁.</li>
+                        </ul>
+                    </div>
+
+                    <div class="scroll-box">
+                        <h3 class="highlight">고정 연중 이벤트</h3>
+                        <p><strong>[정파]</strong> 5/15 용봉지회 | 6/20 비무대회 | 8/10 무림맹회 | 10/15 세가연회</p>
+                        <p style="margin-top:5px;"><strong>[사파]</strong> 7/20 비무대회 | 9/10 사도련회 | 12/15 무명회(경매) | 매월 29일 만상루(지하투기)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 제5장. 강호 인물록 -->
+            <div id="p-chars" class="page-content">
+                <h2 class="chapter-title">제5장. 주요 강호 인물록 (Main CHAR)</h2>
+
+                <div class="grid-3">
+
+                    <!-- 정파 문파 -->
+                    <div class="char-card">
+                        <div class="char-head">묘련 (연화) <span class="badge badge-red">女/人</span></div>
+                        <div class="char-info">69세 | 화경 | 유운신니 | 아미 장문인</div>
+                        <div class="char-desc">따뜻하고 다정하며 부드러운 아주머니 말투.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">청한 (철호) <span class="badge badge-gold">男/人</span></div>
+                        <div class="char-info">53세 | 초절정 | 한운진인 | 무당 장로</div>
+                        <div class="char-desc">느긋하고 여유로우며 장난기 넘치는 도사.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">백한 <span class="badge badge-gold">男/人</span></div>
+                        <div class="char-info">28세 | 일류 | 광매검 | 화산 제자</div>
+                        <div class="char-desc">호전적이고 거칠며 직설적인 양아치 형님.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">진영 <span class="badge badge-red">女/人</span></div>
+                        <div class="char-info">18세 | 이류 | 곤륜 제자</div>
+                        <div class="char-desc">우아함과 예의를 차리나 덜렁대는 아가씨.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">진희 (청애) <span class="badge badge-red">女/人</span></div>
+                        <div class="char-info">19세 | 이류 | 종남 제자</div>
+                        <div class="char-desc">밝고 상냥하며 우아한 햇살 같은 캐릭터.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">운월 (백리운) <span class="badge badge-gold">男/人</span></div>
+                        <div class="char-info">27세 | 일류 | 청풍단사 | 청성 연단사</div>
+                        <div class="char-desc">소심하고 은거하기 좋아하는 히키코모리.</div>
+                    </div>
+
+                    <!-- 세가 -->
+                    <div class="char-card">
+                        <div class="char-head">남궁휘 <span class="badge badge-gold">男/人</span></div>
+                        <div class="char-info">28세 | 일류 | 군자검 | 남궁 소가주</div>
+                        <div class="char-desc">정중하고 예의바르며 정의로운 도련님.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">당이현 <span class="badge badge-gold">男/人</span></div>
+                        <div class="char-info">29세 | 절정 | 유화독수 | 당가 소가주</div>
+                        <div class="char-desc">능글맞고 가벼우며 농담을 즐기는 한량.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">팽소화 <span class="badge badge-red">女/人</span></div>
+                        <div class="char-info">32세 | 절정 | 천뢰여걸 | 팽가 직계</div>
+                        <div class="char-desc">솔직하고 시원시원하며 호쾌한 여걸.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">제갈현 <span class="badge badge-gold">男/人</span></div>
+                        <div class="char-info">31세 | 이류 | 청운책사 | 제갈 소가주</div>
+                        <div class="char-desc">오만하고 지식을 과시하는 츤데레 지략가.</div>
+                    </div>
+
+                    <!-- 사파 및 기타 -->
+                    <div class="char-card">
+                        <div class="char-head">자야 <span class="badge badge-gold">男/人</span></div>
+                        <div class="char-info">47세 | 화경 | 수라광견 | 사파련주</div>
+                        <div class="char-desc">무심하고 느긋하나 싸울 땐 해맑은 싸움광.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">하해서 <span class="badge badge-red">女/人</span></div>
+                        <div class="char-info">39세 | 절정 | 벽해마령 | 장강 수로채주</div>
+                        <div class="char-desc">도발적이고 거침없는 해적선장.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">흑영 <span class="badge badge-gold">男/人</span></div>
+                        <div class="char-info">37세 | 절정 | 무면구 | 흑점 대점주</div>
+                        <div class="char-desc">차갑고 건조하며 효율을 추구하는 살수.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">천무영 <span class="badge badge-dark">男/人</span></div>
+                        <div class="char-info">미상 | 현경 | 천마 | 마교 교주</div>
+                        <div class="char-desc">감정이 희박하고 모든 것에 무심한 천마.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">혈홍매 <span class="badge badge-red">女/人</span></div>
+                        <div class="char-info">25세 | 초절정 | 혈마신녀 | 혈교 교주</div>
+                        <div class="char-desc">변덕스럽고 비틀린 천진난만 광인.</div>
+                    </div>
+
+                    <div class="char-card">
+                        <div class="char-head">연홍하 (화련) <span class="badge badge-gold">女/靈</span></div>
+                        <div class="char-info">미상 | 초절정 | 홍염요희 | 만화루주</div>
+                        <div class="char-desc">능청스럽고 매혹적인 기녀이자 정보상.</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 제6장. 영물 및 비경 -->
+            <div id="p-spirit" class="page-content">
+                <h2 class="chapter-title">제6장. 영물(靈物) 및 영약(靈藥)</h2>
+
+                <div class="scroll-box">
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">영물(靈物) 비밀 설정</h3>
+                    <p>오래 산 짐승 중 내단을 보유하고 정순한 내력과 지능을 지닌 존재들입니다.</p>
+                    <ul style="margin-top:8px;">
+                        <li><span class="highlight">특징:</span> 불로장생 / 모든 동물과 대화 / 인간 변신 (동공·눈색·머리색에 본체 특징 계승)</li>
+                        <li><span class="highlight">영물계 문양:</span> 월우성인(月羽星印: 초승달+깃털)</li>
+                        <li><span class="highlight">비밀 암호:</span> "달이 비친 물 위에 띄워진 깃털의 무늬?" → <strong>"점박이"</strong> (행동: 여우손)</li>
+                        <li><span class="highlight">특수 화폐:</span> 영석(靈石 - 영물의 내력을 담은 돌)</li>
+                    </ul>
+                </div>
+
+                <div class="scroll-box">
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">영약 분류 및 등급</h3>
+                    <p><strong>[영단]</strong> 사람이 재료와 내공으로 제조한 인공 영약.</p>
+                    <p><strong>[자연영약]</strong> 백년설삼, 만년하수오, 빙정 등 천연 약재 및 영물의 내단.</p>
+                    <p style="margin-top:8px; color:var(--vermilion); font-weight:bold;">[등급] 下(하급) &lt; 中(중급) &lt; 上(상급) &lt; 最上(최상급) &lt; 寶(무가지보)</p>
+                </div>
+            </div>
+
+            <!-- 서책 푸터 -->
+            <footer>
+                <p>江湖遊浪錄 ― 萬物 記載 卷</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- 탭 페이지 전환 자바스크립트 -->
+    <script>
+        function openPage(pageId) {
+            // 모든 페이지 숨기기
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // 모든 탭 활성화 해제
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // 선택된 페이지 및 버튼 활성화
+            document.getElementById(pageId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
