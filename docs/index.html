@@ -4,23 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>강호유랑록(江湖遊浪錄)</title>
-    <!-- 고풍스러운 명조/바탕체 폰트 -->
+    <!-- 고풍스러운 명조/바탕체 및 전서체 느낄 수 있는 서체 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;600;700;900&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-wooden: #1a120c;
-            --paper-bg: #f2e9d8;
-            --paper-texture: #e8dbce;
-            --ink-black: #2b2521;
-            --ink-dark: #12100e;
-            --vermilion: #9e2a2b;
-            --gold-accent: #8c6d23;
-            --border-line: #5c4333;
-            --font-title: 'Noto Serif KR', serif;
-            --font-body: 'Gowun Batang', serif;
+            /* 배경 및 한지 색상 계열 */
+            --bg-wooden: #0f0b08;
+            --paper-bg: #e6d5b8;
+            --paper-texture: #d1be9d;
+            --paper-aged: #b5a07e;
+            
+            /* 먹과 붉은 인장 계열 */
+            --ink-black: #1a1612;
+            --ink-dark: #0a0806;
+            --ink-light: #3d352e;
+            --vermilion: #8b1e1e;       /* 주사/인장 붉은색 */
+            --vermilion-light: #a62b2b;
+            --gold-accent: #8c6d23;      /* 금박/황금색 느낌 */
+            --border-line: #4a382c;
+            --border-faded: #8c735d;
+            
+            /* 폰트 */
+            --font-title: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+            --font-body: 'Gowun Batang', 'Nanum Myeongjo', serif;
         }
 
         * {
@@ -29,67 +38,157 @@
             box-sizing: border-box;
         }
 
+        /* 스크롤바 디자인 - 고서적 분위기 연출 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2b2017;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6e5440;
+            border-radius: 2px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--vermilion);
+        }
+
         body {
             background-color: var(--bg-wooden);
-            background-image: radial-gradient(circle at 50% 50%, rgba(45, 30, 20, 0.8) 0%, rgba(15, 10, 5, 0.95) 100%);
+            /* 원목 책상 위 조명이 비추는 고풍스러운 배경 */
+            background-image: 
+                radial-gradient(circle at 50% 30%, rgba(60, 40, 25, 0.4) 0%, rgba(10, 7, 5, 0.95) 100%),
+                repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 2px, transparent 2px, transparent 4px);
             color: var(--ink-black);
             font-family: var(--font-body);
-            line-height: 1.8;
+            line-height: 1.85;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 30px 15px;
+            padding: 40px 15px;
+            word-break: keep-all;
         }
 
-        /* 고서적 프레임 */
+        /* 무협 비록(祕錄) 고서적 컨테이너 */
         .book-container {
             width: 100%;
-            max-width: 1080px;
+            max-width: 1100px;
             background-color: var(--paper-bg);
+            /* 한지(또는 오래된 비단) 질감과 바랜 흔적 효과 */
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(180, 150, 110, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 90% 90%, rgba(100, 70, 40, 0.15) 0%, transparent 50%);
-            border: 12px solid #3d2b1f;
-            outline: 2px solid var(--gold-accent);
+                radial-gradient(ellipse at center, rgba(245, 235, 215, 0.5) 0%, rgba(200, 175, 140, 0.6) 100%),
+                repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 1px, transparent 1px, transparent 3px),
+                radial-gradient(circle at 5% 5%, rgba(90, 50, 20, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 95% 95%, rgba(90, 50, 20, 0.2) 0%, transparent 25%);
+            
+            /* 고서적 표지 및 테두리 마감 (동양 고서 제본 스타일) */
+            border: 14px solid #2b1d14;
+            outline: 3px solid #5c4333;
             border-radius: 4px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 80px rgba(100, 75, 45, 0.3);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.95), 
+                inset 0 0 100px rgba(80, 50, 20, 0.35),
+                inset 0 0 15px rgba(0,0,0,0.5);
             position: relative;
-            padding: 40px;
+            padding: 45px;
         }
 
-        /* 서책 내부 실선 테두리 */
+        /* 고서 비록 좌우 묶음 선/바인딩 느낌 연출 */
+        .book-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 22px; bottom: 0;
+            width: 4px;
+            border-left: 2px dashed #4a3425;
+            border-right: 2px dashed #4a3425;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* 서책 내부 전통 2중 목각 실선 테두리 */
         .book-inner-border {
             border: 2px solid var(--border-line);
-            padding: 30px;
+            outline: 1px solid var(--border-line);
+            outline-offset: -6px;
+            padding: 35px 40px;
             position: relative;
-            min-height: 750px;
+            min-height: 780px;
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 0 30px rgba(139, 110, 75, 0.15);
         }
 
-        /* 헤더 / 제목 */
+        /* 서책 모서리 전통 문양 장식 */
+        .book-inner-border::before, .book-inner-border::after {
+            content: "卍";
+            position: absolute;
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            color: var(--border-line);
+            opacity: 0.6;
+            line-height: 1;
+        }
+        .book-inner-border::before { top: 8px; left: 10px; }
+        .book-inner-border::after { bottom: 8px; right: 10px; }
+
+        /* 헤더 / 제목 영역 (먹글씨 및 비록 헤더) */
         header {
             text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px double var(--border-line);
-            padding-bottom: 20px;
+            margin-bottom: 35px;
+            border-bottom: 3px double var(--border-line);
+            padding-bottom: 25px;
             position: relative;
+        }
+
+        /* 우상단 비록/비밀문서 낙인(낙관) 효과 */
+        header::after {
+            content: "極秘";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            border: 2px solid var(--vermilion);
+            color: var(--vermilion);
+            font-family: var(--font-title);
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            letter-spacing: 2px;
+            transform: rotate(12deg);
+            opacity: 0.85;
+            box-shadow: 0 0 2px rgba(139, 30, 30, 0.4);
+            border-radius: 2px;
         }
 
         .book-title {
             font-family: var(--font-title);
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 900;
             color: var(--ink-dark);
-            letter-spacing: 6px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            letter-spacing: 12px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+            margin-left: 12px; /* letter-spacing 균형 */
         }
 
         .book-subtitle {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             color: var(--vermilion);
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-top: 5px;
+            font-family: var(--font-title);
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .book-subtitle::before, .book-subtitle::after {
+            content: "";
+            display: inline-block;
+            width: 40px;
+            height: 1px;
+            background-color: var(--vermilion);
         }
 
         /* 서책 색인(책갈피) 형태의 네비게이션 */
@@ -97,99 +196,132 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-line);
-            padding-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 35px;
+            border-bottom: 1px solid var(--border-faded);
+            padding-bottom: 20px;
         }
 
         .tab-btn {
-            background-color: #d9cbb7;
+            background: linear-gradient(180deg, #dfcfb9 0%, #c8b499 100%);
             border: 1px solid var(--border-line);
-            border-bottom: 2px solid var(--border-line);
-            color: var(--ink-black);
+            border-bottom: 3px solid #3d2c20;
+            color: var(--ink-dark);
             font-family: var(--font-title);
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 700;
-            padding: 8px 18px;
+            padding: 9px 20px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             position: relative;
-            box-shadow: inset 0 1px 3px rgba(255,255,255,0.5);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.4);
+            border-radius: 2px 2px 0 0;
         }
 
         .tab-btn:hover {
-            background-color: #c9b8a1;
+            background: linear-gradient(180deg, #eedfcb 0%, #d8c3a8 100%);
             color: var(--vermilion);
+            transform: translateY(-2px);
         }
 
         .tab-btn.active {
-            background-color: var(--vermilion);
-            color: #fff;
-            border-color: var(--vermilion);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            background: linear-gradient(180deg, var(--vermilion-light) 0%, var(--vermilion) 100%);
+            color: #fceee3;
+            border-color: #591010;
+            border-bottom: 3px solid #380707;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .tab-btn.active::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px 6px 0 6px;
+            border-style: solid;
+            border-color: var(--vermilion) transparent transparent transparent;
         }
 
         /* 장(페이지) 컨텐츠 */
         .page-content {
             display: none;
-            animation: fadeIn 0.4s ease-out;
+            animation: pageTurn 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
         }
 
         .page-content.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes pageTurn {
+            0% { opacity: 0; transform: translateY(10px) scale(0.99); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* 섹션 제목 */
+        /* 섹션 제목 (한자 비록 두인 느김) */
         .chapter-title {
             font-family: var(--font-title);
-            font-size: 1.6rem;
-            color: var(--vermilion);
-            border-bottom: 1px solid var(--border-line);
-            padding-bottom: 8px;
-            margin-bottom: 20px;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--ink-dark);
+            border-bottom: 2px solid var(--border-line);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            letter-spacing: 1px;
         }
 
+        /* 인장(印章) 디자인 강화 */
         .chapter-title::before {
             content: "印";
-            font-size: 1rem;
+            font-size: 1.05rem;
             background-color: var(--vermilion);
             color: #fff;
-            padding: 0 6px;
-            border-radius: 2px;
-            font-family: serif;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-family: var(--font-title);
+            font-weight: bold;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            border: 1px solid #631212;
+            display: inline-block;
+            line-height: 1.2;
         }
 
-        /* 서책 스타일 박스 */
+        /* 서책 스크롤/두루마리 스타일 박스 */
         .scroll-box {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(223, 207, 185, 0.45);
             border: 1px solid var(--border-line);
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+            padding: 22px 25px;
+            margin-bottom: 25px;
+            box-shadow: inset 0 0 15px rgba(100, 75, 45, 0.08), 2px 2px 5px rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        .scroll-box::before {
+            content: "";
+            position: absolute;
+            top: 3px; left: 3px; right: 3px; bottom: 3px;
+            border: 1px stroke var(--border-faded);
+            pointer-events: none;
+            opacity: 0.5;
         }
 
         .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 22px;
         }
 
         .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 18px;
         }
 
-        /* 목록 및 강조 */
+        /* 목록 및 강조 항목 스타일 */
         ul {
             list-style: none;
             padding-left: 0;
@@ -197,57 +329,82 @@
 
         ul li {
             position: relative;
-            padding-left: 18px;
-            margin-bottom: 6px;
+            padding-left: 22px;
+            margin-bottom: 8px;
+            font-size: 0.98rem;
         }
 
+        /* 대나무 마디 / 붓점 모양 리스트 아이콘 */
         ul li::before {
-            content: "•";
+            content: "◆";
             position: absolute;
-            left: 0;
+            left: 2px;
+            top: 1px;
             color: var(--vermilion);
-            font-weight: bold;
+            font-size: 0.75rem;
         }
 
         .highlight {
             color: var(--vermilion);
-            font-weight: bold;
+            font-weight: 700;
+            font-family: var(--font-title);
         }
 
+        /* 뱃지 디자인 - 전통 낙인 / 현판 느낌 */
         .badge {
             display: inline-block;
             font-size: 0.75rem;
-            padding: 1px 6px;
+            padding: 1px 7px;
             border-radius: 2px;
             font-weight: bold;
-            margin-left: 6px;
+            margin-left: 8px;
+            font-family: var(--font-title);
+            letter-spacing: 1px;
+            vertical-align: middle;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
-        .badge-red { background-color: var(--vermilion); color: #fff; }
-        .badge-dark { background-color: var(--ink-black); color: #fff; }
-        .badge-gold { background-color: var(--gold-accent); color: #fff; }
+        .badge-red { 
+            background-color: var(--vermilion); 
+            color: #fff; 
+            border: 1px solid #631212;
+        }
+        .badge-dark { 
+            background-color: var(--ink-dark); 
+            color: #e6d5b8; 
+            border: 1px solid #000;
+        }
+        .badge-gold { 
+            background-color: var(--gold-accent); 
+            color: #fff; 
+            border: 1px solid #5e4713;
+        }
 
-        /* 인물 전용 태그 카드 */
+        /* 인물 전용 태그 카드 (명함/목패 느낌) */
         .char-card {
-            background-color: rgba(232, 219, 206, 0.6);
+            background-color: rgba(235, 222, 200, 0.7);
             border: 1px solid var(--border-line);
-            padding: 15px;
-            border-left: 4px solid var(--border-line);
-            transition: all 0.2s ease;
+            padding: 18px;
+            border-left: 5px solid var(--border-line);
+            transition: all 0.3s ease;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.06);
+            position: relative;
         }
 
         .char-card:hover {
             border-left-color: var(--vermilion);
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(245, 235, 218, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 4px 6px 12px rgba(0,0,0,0.15);
         }
 
         .char-head {
             font-family: var(--font-title);
-            font-size: 1.15rem;
-            font-weight: bold;
+            font-size: 1.2rem;
+            font-weight: 800;
             color: var(--ink-dark);
-            border-bottom: 1px dashed var(--border-line);
-            padding-bottom: 5px;
+            border-bottom: 1px dashed var(--border-faded);
+            padding-bottom: 6px;
             margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
@@ -255,53 +412,89 @@
         }
 
         .char-info {
-            font-size: 0.85rem;
-            color: var(--gold-accent);
-            font-weight: bold;
-            margin-bottom: 6px;
+            font-size: 0.88rem;
+            color: #6b5014;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-family: var(--font-title);
         }
 
         .char-desc {
-            font-size: 0.9rem;
-            color: #3d352e;
+            font-size: 0.92rem;
+            color: var(--ink-light);
+            line-height: 1.6;
         }
 
-        /* 표 디자인 */
+        /* 고서적 표 디자인 (먹선과 옅은 주사 배경) */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
-            background-color: rgba(255,255,255,0.2);
+            margin-top: 12px;
+            background-color: rgba(238, 226, 207, 0.5);
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
         }
 
         th, td {
             border: 1px solid var(--border-line);
-            padding: 8px 12px;
-            font-size: 0.9rem;
+            padding: 10px 14px;
+            font-size: 0.92rem;
             text-align: left;
+            vertical-align: middle;
         }
 
         th {
-            background-color: rgba(158, 42, 43, 0.1);
+            background-color: rgba(139, 30, 30, 0.12);
             color: var(--vermilion);
             font-family: var(--font-title);
+            font-weight: 700;
+            border-bottom: 2px solid var(--border-line);
         }
 
+        td strong {
+            font-family: var(--font-title);
+            color: var(--ink-dark);
+        }
+
+        tr:nth-child(even) td {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        /* 푸터 영역 */
         footer {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 15px;
+            margin-top: 45px;
+            padding-top: 20px;
             border-top: 1px solid var(--border-line);
-            font-size: 0.85rem;
-            color: #6e5d4f;
+            font-size: 0.9rem;
+            color: #5c4b3e;
+            font-family: var(--font-title);
+            letter-spacing: 3px;
+            position: relative;
         }
 
+        footer::before {
+            content: "✦";
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--paper-bg);
+            padding: 0 10px;
+            color: var(--border-line);
+            font-size: 0.8rem;
+        }
+
+        /* 반응형 모바일 대응 */
         @media (max-width: 768px) {
-            .book-container { padding: 15px; }
-            .book-inner-border { padding: 15px; }
-            .book-title { font-size: 2.1rem; }
+            body { padding: 15px 5px; }
+            .book-container { padding: 15px; border-width: 8px; }
+            .book-inner-border { padding: 18px 12px; min-height: auto; }
+            .book-title { font-size: 2.2rem; letter-spacing: 5px; }
+            .book-subtitle { font-size: 0.95rem; }
             .grid-2, .grid-3 { grid-template-columns: 1fr; }
-            .tab-btn { padding: 6px 12px; font-size: 0.85rem; }
+            .tab-btn { padding: 8px 12px; font-size: 0.88rem; width: 100%; text-align: center; }
+            nav { gap: 6px; }
+            header::after { display: none; }
         }
     </style>
 </head>
