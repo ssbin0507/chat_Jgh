@@ -199,61 +199,46 @@
             background-color: var(--vermilion);
         }
 
-        /* 오른쪽 네비게이션 (세로 탭 형태) */
+        /* 오른쪽 네비게이션 (가로쓰기 배치) */
         nav {
             writing-mode: horizontal-tb;
-            text-orientation: upright;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 12px;
+            gap: 16px;
             padding: 10px 15px;
             border-left: 1px solid var(--border-faded);
             height: 100%;
             min-width: 180px;
         }
 
+        /* 붓글씨 텍스트 탭 스타일에 맞춘 버튼 디자인 */
         .tab-btn {
-            background: linear-gradient(90deg, #dfcfb9 0%, #c8b499 100%);
-            border: 1px solid var(--border-line);
-            border-left: 3px solid #3d2c20;
+            background: transparent;
+            border: none;
             color: var(--ink-dark);
             font-family: var(--font-title);
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 700;
-            padding: 15px 8px;
+            padding: 6px 4px;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
             position: relative;
-            box-shadow: -2px 0 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.4);
-            border-radius: 0 2px 2px 0;
-            letter-spacing: 3px;
+            text-align: left;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-line); /* 서책 기재선 느낌의 기본 밑줄 */
+            box-shadow: none;
+            border-radius: 0;
         }
 
-        .tab-btn:hover {
-            background: linear-gradient(90deg, #eedfcb 0%, #d8c3a8 100%);
-            color: var(--vermilion);
-            transform: translateX(-2px);
-        }
-
+        /* 활성화된 탭 (클릭 시 붉은 붓글씨 및 강한 밑줄 효과) */
         .tab-btn.active {
-            background: linear-gradient(90deg, var(--vermilion-light) 0%, var(--vermilion) 100%);
-            color: #fceee3;
-            border-color: #591010;
-            border-left: 3px solid #380707;
-            box-shadow: -4px 0 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .tab-btn.active::after {
-            content: "";
-            position: absolute;
-            left: -6px;
-            top: 50%;
-            transform: translateY(-50%);
-            border-width: 6px 6px 6px 0;
-            border-style: solid;
-            border-color: transparent var(--vermilion) transparent transparent;
+            background: transparent;
+            color: var(--vermilion);
+            font-weight: 900;
+            border-bottom: 2px solid var(--vermilion);
+            text-shadow: 0 0 1px rgba(139, 30, 30, 0.2);
+            box-shadow: none;
         }
 
         /* 왼쪽 가로쓰기 본문 영역 */
