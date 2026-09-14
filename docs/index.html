@@ -242,9 +242,6 @@
             gap: 12px;
             letter-spacing: 1px;
             position: sticky;
-            top: 0;
-            background-color: rgba(230, 213, 184, 0.95);
-            z-index: 2;
             padding-top: 5px;
         }
 
@@ -514,20 +511,21 @@
 
             <!-- 목차 탭 (오른쪽 세로쓰기) -->
             <nav>
-                <button class="tab-btn active" onclick="openPage('p-intro')">제1장. 서문 및 총론</button>
-                <button class="tab-btn" onclick="openPage('p-martial')">제2장. 무공 및 경지</button>
-                <button class="tab-btn" onclick="openPage('p-factions')">제3장. 문파 및 계절</button>
-                <button class="tab-btn" onclick="openPage('p-chars')">제4장. 강호 인물록</button>
-                <button class="tab-btn" onclick="openPage('p-spirit')">제5장. 영물 및 비경</button>
+                <button class="tab-btn active" onclick="openPage('p-intro')">제1장. 서문</button>
+                <button class="tab-btn" onclick="openPage('p-martial')">제2장. 무공에 대해서</button>
+                <button class="tab-btn" onclick="openPage('p-factions')">제3장. 세력에 대해서</button>
+                <button class="tab-btn" onclick="openPage('p-spirit')">제4장. 영물에 대해서</button>
+                <button class="tab-btn" onclick="openPage('p-chars')">제5장. 강호 인물록</button>
+
             </nav>
 
-            <!-- 제1장. 서문 및 총론 (왼쪽 가로쓰기) -->
+            <!-- 제1장. 서문 (왼쪽 가로쓰기) -->
             <div id="p-intro" class="page-content active">
-                <h2 class="chapter-title">제1장. 강호 유랑의 목적 및 총론</h2>
+                <h2 class="chapter-title">제1장. 서문 및 기본 상식</h2>
                 
                 <div class="scroll-box">
-                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">[유랑의 목적 (GOAL)]</h3>
-                    <p>강호를 자유롭게 유랑하며 각 지역·문파·세력의 다양한 인물들과 관계를 맺고, 일상·여행·탐험·사건을 경험하며 내공과 무공을 익혀 성장해가는 몰입형 무협 Role-play를 제공합니다.</p>
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">[序文]</h3>
+                    <p>내공과 무공이 존재하는 강호를 자유롭게 유랑하며 각 지역, 문파, 세력의 다양한 인물들과 관계를 맺고, 일상, 여행, 탐험, 사건을 경험하며 작성한 비문록.</p>
                 </div>
 
                 <div class="grid-2">
@@ -564,9 +562,9 @@
                 </footer>
             </div>
 
-            <!-- 제3장. 무공 및 경지 -->
+            <!-- 제2장. 무공 및 경지 -->
             <div id="p-martial" class="page-content">
-                <h2 class="chapter-title">제3장. 무공 체계 및 경지 분류</h2>
+                <h2 class="chapter-title">제2장. 무공 체계 및 경지 분류</h2>
 
                 <div class="scroll-box">
                     <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">무공의 구성 및 초식</h3>
@@ -638,9 +636,9 @@
                 </footer>
             </div>
 
-            <!-- 제4장. 문파 및 계절 -->
+            <!-- 제3장. 세력에 대해서 -->
             <div id="p-factions" class="page-content">
-                <h2 class="chapter-title">제4장. 강호 세력 및 고정 연회</h2>
+                <h2 class="chapter-title">제2장. 강호 세력 및 고정 연회</h2>
 
                 <div class="grid-2">
                     <div class="scroll-box">
@@ -676,6 +674,34 @@
                         <p><strong>[정파]</strong> 5/15 용봉지회 | 6/20 비무대회 | 8/10 무림맹회 | 10/15 세가연회</p>
                         <p style="margin-top:5px;"><strong>[사파]</strong> 7/20 비무대회 | 9/10 사도련회 | 12/15 무명회(경매) | 매월 29일 만상루(지하투기)</p>
                     </div>
+                </div>
+
+                <!-- 서책 푸터 -->
+                <footer>
+                    <p>江湖遊浪錄 ― 萬物 記載 卷</p>
+                </footer>
+            </div>
+
+            <!-- 제4장. 영물에 대해서 -->
+            <div id="p-spirit" class="page-content">
+                <h2 class="chapter-title">제4장. 영물(靈物) 및 영약(靈藥)</h2>
+
+                <div class="scroll-box">
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">영물(靈物) 비밀 설정</h3>
+                    <p>오래 산 짐승 중 내단을 보유하고 정순한 내력과 지능을 지닌 존재들입니다.</p>
+                    <ul style="margin-top:8px;">
+                        <li><span class="highlight">특징:</span> 불로장생 / 모든 동물과 대화 / 인간 변신 (동공·눈색·머리색에 본체 특징 계승)</li>
+                        <li><span class="highlight">영물계 문양:</span> 월우성인(月羽星印: 초승달+깃털)</li>
+                        <li><span class="highlight">비밀 암호:</span> "달이 비친 물 위에 띄워진 깃털의 무늬?" → <strong>"점박이"</strong> (행동: 여우손)</li>
+                        <li><span class="highlight">특수 화폐:</span> 영석(靈石 - 영물의 내력을 담은 돌)</li>
+                    </ul>
+                </div>
+
+                <div class="scroll-box">
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">영약 분류 및 등급</h3>
+                    <p><strong>[영단]</strong> 사람이 재료와 내공으로 제조한 인공 영약.</p>
+                    <p><strong>[자연영약]</strong> 백년설삼, 만년하수오, 빙정 등 천연 약재 및 영물의 내단.</p>
+                    <p style="margin-top:8px; color:var(--vermilion); font-weight:bold;">[등급] 下(하급) &lt; 中(중급) &lt; 上(상급) &lt; 最上(최상급) &lt; 寶(무가지보)</p>
                 </div>
 
                 <!-- 서책 푸터 -->
@@ -796,35 +822,6 @@
                     <p>江湖遊浪錄 ― 萬物 記載 卷</p>
                 </footer>
             </div>
-
-            <!-- 제6장. 영물 및 비경 -->
-            <div id="p-spirit" class="page-content">
-                <h2 class="chapter-title">제6장. 영물(靈物) 및 영약(靈藥)</h2>
-
-                <div class="scroll-box">
-                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">영물(靈物) 비밀 설정</h3>
-                    <p>오래 산 짐승 중 내단을 보유하고 정순한 내력과 지능을 지닌 존재들입니다.</p>
-                    <ul style="margin-top:8px;">
-                        <li><span class="highlight">특징:</span> 불로장생 / 모든 동물과 대화 / 인간 변신 (동공·눈색·머리색에 본체 특징 계승)</li>
-                        <li><span class="highlight">영물계 문양:</span> 월우성인(月羽星印: 초승달+깃털)</li>
-                        <li><span class="highlight">비밀 암호:</span> "달이 비친 물 위에 띄워진 깃털의 무늬?" → <strong>"점박이"</strong> (행동: 여우손)</li>
-                        <li><span class="highlight">특수 화폐:</span> 영석(靈石 - 영물의 내력을 담은 돌)</li>
-                    </ul>
-                </div>
-
-                <div class="scroll-box">
-                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">영약 분류 및 등급</h3>
-                    <p><strong>[영단]</strong> 사람이 재료와 내공으로 제조한 인공 영약.</p>
-                    <p><strong>[자연영약]</strong> 백년설삼, 만년하수오, 빙정 등 천연 약재 및 영물의 내단.</p>
-                    <p style="margin-top:8px; color:var(--vermilion); font-weight:bold;">[등급] 下(하급) &lt; 中(중급) &lt; 上(상급) &lt; 最上(최상급) &lt; 寶(무가지보)</p>
-                </div>
-
-                <!-- 서책 푸터 -->
-                <footer>
-                    <p>江湖遊浪錄 ― 萬物 記載 卷</p>
-                </footer>
-            </div>
-
         </div>
     </div>
 
