@@ -441,47 +441,17 @@
             font-size: 0.8rem;
         }
 
-        /* 모바일 및 세로 화면 대응 */
-        @media (max-width: 900px) {
+        /* 모바일 기기 세로 모드 접속 시 전체 화면 강제 90도 회전 (가로 보기 고정) */
+        @media (max-width: 900px) and (orientation: portrait) {
             body {
-                height: auto;
-                overflow: auto;
-                padding: 10px;
-            }
-            .book-container {
-                height: auto;
-                padding: 15px;
-            }
-            .book-inner-border {
-                flex-direction: column;
-                height: auto;
-                gap: 15px;
-            }
-            header, nav {
-                writing-mode: horizontal-tb;
-                height: auto;
-                width: 100%;
-                border: none;
-                justify-content: center;
-            }
-            header {
-                border-bottom: 2px solid var(--border-line);
-                padding-bottom: 15px;
-            }
-            nav {
-                flex-wrap: wrap;
-                border-bottom: 1px solid var(--border-faded);
-                padding-bottom: 15px;
-            }
-            .book-container::before {
-                display: none;
-            }
-            .tab-btn.active::after {
-                display: none;
-            }
-            .page-content {
-                height: auto;
-                overflow-y: visible;
+                width: 100vh;
+                height: 100vw;
+                transform: rotate(90deg);
+                transform-origin: center center;
+                position: absolute;
+                top: calc(50% - 50vw);
+                left: calc(50% - 50vh);
+                overflow: hidden;
             }
         }
     </style>
