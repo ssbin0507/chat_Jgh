@@ -455,9 +455,11 @@
                 padding: 10px;
             }
             .book-container {
-                width: calc(100vh - 20px);
+                width: 100vh;
                 height: calc(100vw - 20px);
                 max-width: none;
+		transform: scale(calc(100vw / 100vh));
+                transform-origin: center center;
             }
         }
     </style>
