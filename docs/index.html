@@ -441,7 +441,7 @@
             font-size: 0.8rem;
         }
 
-        /* 모바일 기기 세로 모드 접속 시 전체 화면 강제 90도 회전 (가로 보기 고정) */
+        /* 모바일 기기 세로 모드 접속 시 가로 비율 유지 및 90도 회전 대응 */
         @media (max-width: 900px) and (orientation: portrait) {
             body {
                 width: 100vh;
@@ -452,6 +452,12 @@
                 top: calc(50% - 50vw);
                 left: calc(50% - 50vh);
                 overflow: hidden;
+                padding: 10px;
+            }
+            .book-container {
+                width: 100vh;
+                height: calc(100vw - 20px);
+                max-width: none;
             }
         }
     </style>
@@ -508,7 +514,7 @@
 
             <!-- 제2장. 무공 및 경지 -->
             <div id="p-martial" class="page-content">
-                <h2 class="chapter-title">제2장. 무공</h2>
+                <h2 class="chapter-title">제2장 무공에 대하여</h2>
 
 		<div class="scroll-box">
 		    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">武功</h3>
@@ -587,41 +593,51 @@
 
             <!-- 제3장. 세력에 대해서 -->
             <div id="p-factions" class="page-content">
-                <h2 class="chapter-title">제2장. 강호 세력 및 고정 연회</h2>
+                <h2 class="chapter-title">제3장 세력에 대하여</h2>
 
                 <div class="grid-2">
                     <div class="scroll-box">
-                        <h3 class="highlight">정파 (正派) - 무림맹</h3>
-                        <p>도덕·명분·협의 중시 및 전통 질서 수호.</p>
-                        <ul style="margin-top:8px;">
-                            <li><strong>구파일방:</strong> 소림사, 무당파, 아미파, 곤륜파, 화산파, 점창파, 종남파, 청성파, 해남파 + 개방</li>
-                            <li><strong>오대세가:</strong> 남궁세가, 사천당가, 하북팽가, 모용세가, 제갈세가</li>
+                        <h3 class="highlight">정파 (正派)</h3>
+                        <p>도덕적 명분과 사회적 질서, 협의를 중시하며 올바른 행동을 추구하는 무림 세력[cite: 2].</p>
+                        <ul>
+                            <li><span class="highlight">무림맹:</span> 구파일방과 오대세가로 이루어진 정파의 최고 연합[cite: 2].</li>
+
+                            <li><span class="highlight">구파일방:</span> 소림사, 무당파, 아미파, 곤륜파, 화산파, 점창파, 종남파, 청성파, 해남파, 개방[cite: 2]</li>
+                            <li><span class="highlight">오대세가:</span> 남궁세가, 사천당가, 하북팽가, 모용세가, 제갈세가[cite: 2]</li>
+                            <li><span class="highlight">주요행사:</span> 용봉지회(5/15), 비무대회(6/20), 무림맹회(8/10), 세가연회(10/15)[cite: 2]</li>
+
                         </ul>
                     </div>
 
                     <div class="scroll-box">
-                        <h3 class="highlight">사파 (邪派) - 사도련</h3>
-                        <p>목적을 위해 수단·방법을 가리지 않는 변칙성.</p>
-                        <ul style="margin-top:8px;">
-                            <li><strong>연합 세력:</strong> 수라방, 하오문, 녹림, 장강수로채, 흑점</li>
+                        <h3 class="highlight">사파 (邪派) </h3>
+                        <p>도덕적·철학적 기준에서 벗어나 현실적인 실리, 개인의 욕망, 힘 등을 추구하는 무림 세력[cite: 2].</p>
+                        <ul>
+                            <li><span class="highlight">사도련:</span> 수라방, 하오문, 녹림, 장강수로채, 흑점 으로 이루어진 사파의 최고 연합[cite: 2]</li>
+                            <li><span class="highlight">주요행사:</span> 비무대회(7/20), 사도련회(9/10), 무명회(12/15, 비밀지하경매), 만상루(매월29일, 비밀지하투기 및 도박장)[cite: 2]</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="grid-2">
                     <div class="scroll-box">
-                        <h3 class="highlight">마교, 혈교 및 새외</h3>
-                        <ul>
-                            <li><span class="highlight">천마신교(마교):</span> 천마 숭배, 패도 마공.</li>
-                            <li><span class="highlight">혈교:</span> 혈신 숭배, 피를 사용한 살육 및 인신공양.</li>
-                            <li><span class="highlight">새외무림:</span> 북해빙궁, 남만야수궁.</li>
-                        </ul>
+                        <h3 class="highlight">천마신교(마교)</h3>
+			<p>천마를 숭배하고 무림 전체를 삼킬 강자존을 숭상하는 거대 종교 및 마공 세력[cite: 2].</p>
                     </div>
 
                     <div class="scroll-box">
-                        <h3 class="highlight">고정 연중 이벤트</h3>
-                        <p><strong>[정파]</strong> 5/15 용봉지회 | 6/20 비무대회 | 8/10 무림맹회 | 10/15 세가연회</p>
-                        <p style="margin-top:5px;"><strong>[사파]</strong> 7/20 비무대회 | 9/10 사도련회 | 12/15 무명회(경매) | 매월 29일 만상루(지하투기)</p>
+                        <h3 class="highlight">혈교</h3>
+			<p>혈신을 숭배하고 무림을 파멸로 이끌며 피를 사용한 식인, 살육, 인신공양을 마다하지 않는 거대 종교 및 마공 세력[cite: 2].</p>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="scroll-box">
+                        <h3 class="highlight">새외무림</h3>
+			<p>중원의 지배권과 전통적인 무림 체계를 벗어난 만리장성 밖의 무림세력[cite: 2].</p>
+                        <ul>
+                            <li><span class="highlight"> 북해빙궁, 남만야수궁</span>[cite: 2]</li>
+                        </ul>
                     </div>
                 </div>
 
