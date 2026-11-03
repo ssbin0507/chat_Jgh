@@ -67,7 +67,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 20px;
             word-break: keep-all;
         }
 
@@ -75,7 +75,7 @@
         .book-container {
             width: 100%;
             max-width: 1600px;
-            height: calc(100vh - 60px);
+            height: calc(100vh - 40px);
             background-color: var(--paper-bg);
             background-image: 
                 radial-gradient(ellipse at center, rgba(245, 235, 215, 0.5) 0%, rgba(200, 175, 140, 0.6) 100%),
@@ -83,7 +83,7 @@
                 radial-gradient(circle at 5% 5%, rgba(90, 50, 20, 0.15) 0%, transparent 20%),
                 radial-gradient(circle at 95% 95%, rgba(90, 50, 20, 0.2) 0%, transparent 25%);
             
-            border: 14px solid #2b1d14;
+            border: 5px solid #2b1d14;
             outline: 3px solid #5c4333;
             border-radius: 4px;
             box-shadow: 
@@ -109,20 +109,6 @@
             gap: 20px;
         }
 
-        /* 서책 모서리 전통 문양 장식 */
-        .book-inner-border::before, .book-inner-border::after {
-            content: "卍";
-            position: absolute;
-            font-family: var(--font-title);
-            font-size: 1.2rem;
-            color: var(--border-line);
-            opacity: 0.6;
-            line-height: 1;
-            z-index: 10;
-        }
-        .book-inner-border::before { top: 8px; left: 10px; }
-        .book-inner-border::after { bottom: 8px; right: 10px; }
-
         /* 오른쪽에 세로쓰기로 배치되는 우측 사이드바 (제목 + 탭 목록) */
         header {
             writing-mode: vertical-rl;
@@ -139,7 +125,7 @@
 
         /* 비록 낙관 효과 */
         header::after {
-            content: "極秘";
+            content: "天下才誌";
             position: absolute;
             top: 15px;
             left: 10px;
@@ -246,7 +232,7 @@
         }
 
         .chapter-title::before {
-            content: "印";
+            content: "章";
             font-size: 1.05rem;
             background-color: var(--vermilion);
             color: #fff;
@@ -405,7 +391,7 @@
 
         th, td {
             border: 1px solid var(--border-line);
-            padding: 8px 12px;
+            padding: 4px 5px;
             font-size: 0.9rem;
             text-align: left;
             vertical-align: middle;
@@ -414,6 +400,7 @@
         th {
             background-color: rgba(139, 30, 30, 0.12);
             color: var(--vermilion);
+	    text-align: center;
             font-family: var(--font-title);
             font-weight: 700;
             border-bottom: 2px solid var(--border-line);
@@ -511,128 +498,120 @@
 
             <!-- 목차 탭 (오른쪽 세로쓰기) -->
             <nav>
-                <button class="tab-btn active" onclick="openPage('p-intro')">제1장. 서문</button>
-                <button class="tab-btn" onclick="openPage('p-martial')">제2장. 무공에 대해서</button>
-                <button class="tab-btn" onclick="openPage('p-factions')">제3장. 세력에 대해서</button>
-                <button class="tab-btn" onclick="openPage('p-spirit')">제4장. 영물에 대해서</button>
-                <button class="tab-btn" onclick="openPage('p-chars')">제5장. 강호 인물록</button>
+                <button class="tab-btn active" onclick="openPage('p-intro')">제1장 서문</button>
+                <button class="tab-btn" onclick="openPage('p-martial')">제2장 무공에 대해서</button>
+                <button class="tab-btn" onclick="openPage('p-factions')">제3장 세력에 대해서</button>
+                <button class="tab-btn" onclick="openPage('p-spirit')">제4장 영물에 대해서</button>
+                <button class="tab-btn" onclick="openPage('p-chars')">제5장 인물에 대해서</button>
 
             </nav>
 
-            <!-- 제1장. 서문 (왼쪽 가로쓰기) -->
+            <!-- 제1장 서문 (왼쪽 가로쓰기) -->
             <div id="p-intro" class="page-content active">
-                <h2 class="chapter-title">제1장. 서문 및 기본 상식</h2>
+                <h2 class="chapter-title">제1장 서문</h2>
                 
                 <div class="scroll-box">
-                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">[序文]</h3>
-                    <p>내공과 무공이 존재하는 강호를 자유롭게 유랑하며 각 지역, 문파, 세력의 다양한 인물들과 관계를 맺고, 일상, 여행, 탐험, 사건을 경험하며 작성한 비문록.</p>
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">序文</h3>
+                    <p>내공과 무공이 존재하는 강호를 자유롭게 유랑하며 각 지역, 문파, 세력의 상호작용과 일상, 여행, 탐험, 사건에 대한 경험을 바탕으로 유용한 정보를 묶어 작성한 비문록.</p>
                 </div>
 
                 <div class="grid-2">
                     <div class="scroll-box">
-                        <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">세계관 기본 설정</h3>
+                        <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">기본상식(基本常識)</h3>
                         <ul>
-                            <li><span class="highlight">장르:</span> 무협</li>
-                            <li><span class="highlight">배경:</span> 명나라 기반의 무림·강호</li>
-                            <li><span class="highlight">관무불가침(官武不侵):</span> 관가는 무림의 일에 관여하지 아니함.</li>
-                            <li><span class="highlight">성인 관례:</span> 男 = 20세부터 / 女 = 15세부터</li>
+                            <li><span class="highlight">관무불가침:</span> 관부는 무림의 일에 관여하지 않는다.</li>
+                            <li><span class="highlight">관례:</span> 남아는 20세부터, 여아는 15세부터 관례를 치른 뒤 성인으로 취급한다.</li>
+                            <li><span class="highlight">화폐:</span> 철전(푼) &lt; 은자(냥) &lt; 금자(금) (1,000푼 = 1냥, 20냥 = 1금)</li>
+                            <li><span class="highlight">원보:</span> 말안장 모양의 주괴 (은원보 = 50냥, 금원보 = 50금</li>
+                            <li><span class="highlight">전표:</span> 전장에서 적힌 금액만큼 화폐를 받을 수 있는 종이</li>
+                            <li><span class="highlight">옥패: </span> 다양한 세력 및 장소에서 신분을 보증하는 패</li>
+                            <li><span class="highlight">도량형:</span> 1치(약 3.03cm) &lt; 1척(10치, 약 30.3cm) &lt; 1장(10척, 약 3.03m) | 1리(약 400m)</li>
                         </ul>
                     </div>
-
-                    <div class="scroll-box">
-                        <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">화폐 및 물가</h3>
-                        <ul>
-                            <li><span class="highlight">화폐 단위:</span> 푼(철전) &lt; 냥(은자) &lt; 금(금자)</li>
-                            <li><span class="highlight">환율:</span> 1,000푼 = 1냥 / 20냥 = 1금</li>
-                            <li><span class="highlight">원보:</span> 말안장 모양 주괴 (은원보=50냥, 금원보=50금) / 전표(수표)</li>
-                            <li><span class="highlight">물가 예시:</span> 식당 식사 = 5푼~50푼 / 비옥한 밭 30평 = 7~8냥</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="scroll-box">
-                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">도량형 및 신분증표</h3>
-                    <p><strong>[길이]</strong> 1치 = 3.03cm | 1척 = 10치 (약 30.3cm) | 1장 = 10척 (약 3.03m) | 1리 = 약 400m</p>
-                    <p><strong>[옥패(玉牌)]</strong> 세가·대문파·흑점 등에서 신분을 보증하는 패 (예: 남궁세가=금옥패, 흑점=흑옥패)</p>
                 </div>
 
                 <!-- 서책 푸터 -->
                 <footer>
-                    <p>江湖遊浪錄 ― 萬物 記載 卷</p>
+                    <p>江湖遊浪錄 一張</p>
                 </footer>
             </div>
 
             <!-- 제2장. 무공 및 경지 -->
             <div id="p-martial" class="page-content">
-                <h2 class="chapter-title">제2장. 무공 체계 및 경지 분류</h2>
+                <h2 class="chapter-title">제2장. 무공</h2>
+
+		<div class="scroll-box">
+		    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">武功</h3>
+		    <p>무공이란 단순한 살상이나 격투의 기술이 아니며, 범인의 한계를 벗어나 천지간에 넘실거리는 영기를 육신에 가두고 <strong>내공(체내의 기)</strong>으로 축적한 뒤 이를 의지에 따라 발현하여 인간을 초인의 반열에 올리는 절대의 법문이다. 또한 <strong>외공(육체 단련)</strong>을 단련하며 <strong>초식(기술)</strong>을 이해해 무술의 끝에 다다르기 위한 노력도 필요하다.</p>
+		</div>
 
                 <div class="scroll-box">
-                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">무공의 구성 및 초식</h3>
-                    <div class="grid-2">
-                        <ul>
-                            <li><span class="highlight">내공:</span> 체내 축적 기(氣) [60년 = 1갑자]</li>
-                            <li><span class="highlight">외공 / 심법 / 경공:</span> 신체단련 / 내공축적법 / 속도·반응</li>
-                            <li><span class="highlight">운기조식:</span> 내력 순환 회복 (실패 시 주화입마)</li>
-                            <li><span class="highlight">환골탈태 / 반로환동:</span> 최적화 육체 개조 / 전성기 회춘</li>
-                        </ul>
-                        <ul>
-                            <li><span class="highlight">검기 / 검사:</span> 기를 무기에 밀어넣음 / 실처럼 유형화</li>
-                            <li><span class="highlight">검강 / 검환:</span> 검기 뭉쳐 유형화 / 구 형태 압축</li>
-                            <li><span class="highlight">이기어검 / 어검비행:</span> 원격 검 조종 / 검 타고 비행</li>
-                            <li><span class="highlight">호신강기 / 무형검:</span> 내공 갑옷 방어 / 기로 무기 형성</li>
-                        </ul>
-                    </div>
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">속성(屬性)</h3>
+                    <p><strong>[계열]</strong> 正(정기·중정·벽사·안정) | 魔(기·폭주·침식·패도) | 無(중립·무속성)</p>
+                    <p><strong>[종류]</strong> 陰(음한·냉기·태음) | 陽(양강·열기·순양) | 毒(독기·독공/내력에 독성혼입) | 神(정신/심상) | 淸(청정/내력 강제로 순수유지·이질적기운+불순물 배척)</p>
+                    <p style="color: var(--vermilion); margin-top: 5px;"><strong>[상극]</strong> 正(정) ↔ 魔(마) | 陰(음) ↔ 陽(양) | 毒(독) ↔ 淸(청)</p>
+<p style="font-size: 0.85rem; color: var(--vermilion);">※ 상극 무공 동시 습득 시 <strong>내력충돌 및 주화입마</strong> → 상극 무공으로 전환 시 <strong>기존 내공 폐기 필수</strong> (예외로 <strong>현경</strong>은 일부 도전, <strong>생사경</strong>은 자유습득 가능)</p>
                 </div>
 
                 <div class="scroll-box">
-                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">경지 단계 및 진입 조건</h3>
+                    <h3 class="highlight" style="font-size: 1.1rem;">경지(境地)</h3>
+                    <p style="font-size: 0.85rem; color: var(--vermilion);">※ 경지 차이가 2단계 이상 차이날 시 승리할 확률은 극히 저하된다.</p>
                     <table>
                         <thead>
                             <tr>
                                 <th>경지</th>
-                                <th>진입 조건 및 주요 특징</th>
+				<th>설명</th>
+                                <th>진입 조건</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>삼류 ~ 일류</strong></td>
-                                <td>갓 입문(삼류) → 단전 형성(이류) → 범인의 한계 및 기로 무기 강화(일류).</td>
+                                <td style="text-align: center;"><strong>삼류</strong></td>
+                                <td>갓 입문한 자</td>
+                                <td>X</td>
                             </tr>
                             <tr>
-                                <td><strong>절정 (絶頂)</strong></td>
-                                <td>내공 운용 자유자재, 검기 및 검사 발출 가능.</td>
+                                <td style="text-align: center;"><strong>이류</strong></td>
+                                <td>단전 형성이 완료된 자</td>
+                                <td>X</td>
                             </tr>
                             <tr>
-                                <td><strong class="highlight">초절정 (超絶頂)</strong></td>
-                                <td><strong>조건:</strong> 주력무공 대성 + 무공이치 체득 + 실전응용.<br>검강, 신검합일, 환골탈태, 호신강기.</td>
+                                <td style="text-align: center;"><strong>일류</strong></td>
+                                <td>무기나 신체를 기로 강화할 수 있는 자</td>
+                                <td>X</td>
                             </tr>
                             <tr>
-                                <td><strong class="highlight">조화경 / 화경</strong></td>
-                                <td><strong>조건:</strong> 여러 무공이치 조화 + 자기 무도 정립.<br>허공섭물, 이기어검, 반로환동, 무공통달.</td>
+                                <td style="text-align: center;"><strong>절정</strong></td>
+                                <td>검기를 사용할 수 있으며 내공운용을 자유자재로 할 수 있는 자</td>
+                                <td>X (범인의 한계점)</td>
                             </tr>
                             <tr>
-                                <td><strong class="highlight">현경 (玄境)</strong></td>
-                                <td><strong>조건:</strong> 기존 무공 틀 초월 + 독자 무도 완성.<br>무형검 운용, 극난의 경지.</td>
+                                <td style="text-align: center;"><strong>초절정</strong></td>
+                                <td>환골탈태를 경험했고 검강과 호신강기를 사용할 수 있는 자</td>
+                                <td>주력 무공 대성, 초식의 원리 체득 및 응용 가능</td>
                             </tr>
                             <tr>
-                                <td><strong class="highlight">생사경 (生死境)</strong></td>
-                                <td><strong>조건:</strong> 생사관 초월 + 인간한계 깨달음.<br>불로장생, 수명 초월, 살아있는 신선.</td>
+                                <td style="text-align: center;"><strong>조화경(화경)</strong></td>
+                                <td>반로환동을 경험했으며 모든 무공에 통달했고 허공섭물을 사용할 수 있는 자</td>
+                                <td>무공 2개이상 대성, 자신만의 무도 적립, 삼화취정</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;"><strong>현경</strong></td>
+                                <td>무형검을 사용할 수 있는 자</td>
+                                <td>원만 무공 보유, 무공의 본질에 대한 깨달음, 독자적 무공체계 완성</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;"><strong>생사경 </strong></td>
+                                <td>수명과 인간의 한계를 초월하여 불로장생하는 살아있는 신선으로 여겨지는 자</td>
+                                <td>상극 무공 사용, 생사·육체한계·자연이치·우주섭리에 대한 깨달음</td>
                             </tr>
                         </tbody>
                     </table>
-                    <p style="font-size:0.85rem; margin-top:8px; color:var(--vermilion);">※ 경지 차이 2단계 이상 시 극복/승리 확률 극히 저하.</p>
-                </div>
-
-                <div class="scroll-box">
-                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">무공 속성 및 상극 관계</h3>
-                    <p><strong>[계열]</strong> 正(정기·벽사) | 魔(마기·패도) | 無(중립)</p>
-                    <p><strong>[종류]</strong> 陰(음한) | 陽(열기) | 毒(독성) | 神(정신/심상) | 淸(순수유지/배척)</p>
-                    <p style="color:var(--vermilion); font-weight:bold; margin-top:5px;">[상극] 陰 ↔ 陽 | 淸 ↔ 毒 | 正 ↔ 魔 (동시 습득 시 내력충돌 및 주화입마 / 전환 시 기존 내공 폐기 필수)</p>
                 </div>
 
                 <!-- 서책 푸터 -->
                 <footer>
-                    <p>江湖遊浪錄 ― 萬物 記載 卷</p>
+                    <p>江湖遊浪錄 二張</p>
                 </footer>
             </div>
 
@@ -678,7 +657,7 @@
 
                 <!-- 서책 푸터 -->
                 <footer>
-                    <p>江湖遊浪錄 ― 萬物 記載 卷</p>
+                    <p>江湖遊浪錄 三張</p>
                 </footer>
             </div>
 
@@ -706,7 +685,7 @@
 
                 <!-- 서책 푸터 -->
                 <footer>
-                    <p>江湖遊浪錄 ― 萬物 記載 卷</p>
+                    <p>江湖遊浪錄 四張</p>
                 </footer>
             </div>
 
@@ -819,7 +798,7 @@
 
                 <!-- 서책 푸터 -->
                 <footer>
-                    <p>江湖遊浪錄 ― 萬物 記載 卷</p>
+                    <p>江湖遊浪錄 五張</p>
                 </footer>
             </div>
         </div>
