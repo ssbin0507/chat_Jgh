@@ -182,6 +182,7 @@
             border-bottom: 1px solid var(--border-line); /* 서책 기재선 느낌의 기본 밑줄 */
             box-shadow: none;
             border-radius: 0;
+            white-space: nowrap;
         }
 
         /* 활성화된 탭 (클릭 시 붉은 붓글씨 및 강한 밑줄 효과) */
@@ -228,6 +229,9 @@
             gap: 12px;
             letter-spacing: 1px;
             position: sticky;
+            top: 0;
+            background-color: rgba(230, 213, 184, 0.95);
+            z-index: 10;
             padding-top: 5px;
         }
 
@@ -381,17 +385,24 @@
         }
 
         /* 고서적 표 디자인 */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 12px;
             background-color: rgba(238, 226, 207, 0.5);
             box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
+            min-width: 500px;
         }
 
         th, td {
             border: 1px solid var(--border-line);
-            padding: 4px 5px;
+            padding: 6px 8px;
             font-size: 0.9rem;
             text-align: left;
             vertical-align: middle;
@@ -400,7 +411,7 @@
         th {
             background-color: rgba(139, 30, 30, 0.12);
             color: var(--vermilion);
-	    text-align: center;
+            text-align: center;
             font-family: var(--font-title);
             font-weight: 700;
             border-bottom: 2px solid var(--border-line);
@@ -441,25 +452,88 @@
             font-size: 0.8rem;
         }
 
-        /* 모바일 기기 세로 모드 접속 시 가로 비율 유지 및 90도 회전 대응 */
-        @media (max-width: 900px) and (orientation: portrait) {
+        /* ==========================================
+           모바일 반응형 모드 (Screen Width < 900px)
+        ========================================== */
+        @media (max-width: 900px) {
             body {
-                width: 100vh;
-                height: 100vw;
-                transform: rotate(90deg);
-                transform-origin: center center;
-                position: absolute;
-                top: calc(50% - 50vw);
-                left: calc(50% - 50vh);
-                overflow: hidden;
+                height: 100vh;
                 padding: 10px;
+                overflow: hidden;
             }
+
             .book-container {
-                width: 100vh;
-                height: calc(100vw - 20px);
-                max-width: none;
-		transform: scale(100vw, 100vh);
-                transform-origin: center center;
+                height: 100%;
+                padding: 10px;
+                border-width: 3px;
+            }
+
+            .book-inner-border {
+                flex-direction: column; /* 세로 레이아웃으로 변환 */
+                padding: 12px;
+                gap: 10px;
+                overflow: hidden;
+            }
+
+            header {
+                writing-mode: horizontal-tb; /* 모바일에서는 가로쓰기로 변경 */
+                height: auto;
+                min-width: 0;
+                border-left: none;
+                border-bottom: 2px double var(--border-line);
+                padding: 5px 0 10px 0;
+                justify-content: center;
+            }
+
+            header::after {
+                top: 5px;
+                left: 5px;
+                font-size: 0.7rem;
+                padding: 2px 4px;
+            }
+
+            .book-title {
+                font-size: 1.8rem;
+                letter-spacing: 4px;
+            }
+
+            nav {
+                writing-mode: horizontal-tb;
+                flex-direction: row; /* 탭 버튼을 가로 스크롤 형태로 배치 */
+                justify-content: flex-start;
+                align-items: center;
+                gap: 8px;
+                padding: 6px 0;
+                border-left: none;
+                border-bottom: 1px solid var(--border-faded);
+                height: auto;
+                min-width: 0;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .tab-btn {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+                flex-shrink: 0;
+            }
+
+            .page-content {
+                padding-right: 5px;
+            }
+
+            .chapter-title {
+                font-size: 1.3rem;
+                margin-bottom: 12px;
+            }
+
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr; /* 모바일에서는 1열로 세로 정렬 */
+                gap: 12px;
+            }
+
+            .scroll-box {
+                padding: 12px 15px;
             }
         }
     </style>
@@ -469,19 +543,18 @@
     <div class="book-container">
         <div class="book-inner-border">
             
-            <!-- 서책 헤더 (오른쪽 세로쓰기) -->
+            <!-- 서책 헤더 (오른쪽 세로쓰기 -> 모바일 상단 가로쓰기) -->
             <header>
                 <div class="book-title">江湖遊浪錄</div>
             </header>
 
-            <!-- 목차 탭 (오른쪽 세로쓰기) -->
+            <!-- 목차 탭 (오른쪽 세로쓰기 -> 모바일 가로 스크롤 메뉴) -->
             <nav>
                 <button class="tab-btn active" onclick="openPage('p-intro')">제1장 서문</button>
                 <button class="tab-btn" onclick="openPage('p-martial')">제2장 무공에 대해서</button>
                 <button class="tab-btn" onclick="openPage('p-factions')">제3장 세력에 대해서</button>
                 <button class="tab-btn" onclick="openPage('p-spirit')">제4장 영물에 대해서</button>
                 <button class="tab-btn" onclick="openPage('p-chars')">제5장 인물에 대해서</button>
-
             </nav>
 
             <!-- 제1장 서문 (왼쪽 가로쓰기) -->
@@ -534,57 +607,59 @@
                 <div class="scroll-box">
                     <h3 class="highlight" style="font-size: 1.1rem;">경지(境地)</h3>
                     <p style="font-size: 0.85rem; color: var(--vermilion);">※ 경지 차이가 2단계 이상 차이날 시 승리할 확률은 극히 저하된다.</p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>경지</th>
-				<th>설명</th>
-                                <th>진입 조건</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: center;"><strong>삼류</strong></td>
-                                <td>갓 입문한 자</td>
-                                <td>X</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;"><strong>이류</strong></td>
-                                <td>단전 형성이 완료된 자</td>
-                                <td>X</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;"><strong>일류</strong></td>
-                                <td>무기나 신체를 기로 강화할 수 있는 자</td>
-                                <td>X</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;"><strong>절정</strong></td>
-                                <td>검기를 사용할 수 있으며 내공운용을 자유자재로 할 수 있는 자</td>
-                                <td>X (범인의 한계점)</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;"><strong>초절정</strong></td>
-                                <td>환골탈태를 경험했고 검강과 호신강기를 사용할 수 있는 자</td>
-                                <td>주력 무공 대성, 초식의 원리 체득 및 응용 가능</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;"><strong>조화경(화경)</strong></td>
-                                <td>반로환동을 경험했으며 모든 무공에 통달했고 허공섭물을 사용할 수 있는 자</td>
-                                <td>무공 2개이상 대성, 자신만의 무도 적립, 삼화취정</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;"><strong>현경</strong></td>
-                                <td>무형검을 사용할 수 있는 자</td>
-                                <td>원만 무공 보유, 무공의 본질에 대한 깨달음, 독자적 무공체계 완성</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;"><strong>생사경 </strong></td>
-                                <td>수명과 인간의 한계를 초월하여 불로장생하는 살아있는 신선으로 여겨지는 자</td>
-                                <td>상극 무공 사용, 생사·육체한계·자연이치·우주섭리에 대한 깨달음</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>경지</th>
+                                    <th>설명</th>
+                                    <th>진입 조건</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center;"><strong>삼류</strong></td>
+                                    <td>갓 입문한 자</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;"><strong>이류</strong></td>
+                                    <td>단전 형성이 완료된 자</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;"><strong>일류</strong></td>
+                                    <td>무기나 신체를 기로 강화할 수 있는 자</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;"><strong>절정</strong></td>
+                                    <td>검기를 사용할 수 있으며 내공운용을 자유자재로 할 수 있는 자</td>
+                                    <td>X (범인의 한계점)</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;"><strong>초절정</strong></td>
+                                    <td>환골탈태를 경험했고 검강과 호신강기를 사용할 수 있는 자</td>
+                                    <td>주력 무공 대성, 초식의 원리 체득 및 응용 가능</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;"><strong>조화경(화경)</strong></td>
+                                    <td>반로환동을 경험했으며 모든 무공에 통달했고 허공섭물을 사용할 수 있는 자</td>
+                                    <td>무공 2개이상 대성, 자신만의 무도 적립, 삼화취정</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;"><strong>현경</strong></td>
+                                    <td>무형검을 사용할 수 있는 자</td>
+                                    <td>원만 무공 보유, 무공의 본질에 대한 깨달음, 독자적 무공체계 완성</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;"><strong>생사경 </strong></td>
+                                    <td>수명과 인간의 한계를 초월하여 불로장생하는 살아있는 신선으로 여겨지는 자</td>
+                                    <td>상극 무공 사용, 생사·육체한계·자연이치·우주섭리에 대한 깨달음</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- 서책 푸터 -->
@@ -600,23 +675,23 @@
                 <div class="grid-2">
                     <div class="scroll-box">
                         <h3 class="highlight">정파 (正派)</h3>
-                        <p>도덕적 명분과 사회적 질서, 협의를 중시하며 올바른 행동을 추구하는 무림 세력[cite: 2].</p>
+                        <p>도덕적 명분과 사회적 질서, 협의를 중시하며 올바른 행동을 추구하는 무림 세력.</p>
                         <ul>
-                            <li><span class="highlight">무림맹:</span> 구파일방과 오대세가로 이루어진 정파의 최고 연합[cite: 2].</li>
+                            <li><span class="highlight">무림맹:</span> 구파일방과 오대세가로 이루어진 정파의 최고 연합.</li>
 
-                            <li><span class="highlight">구파일방:</span> 소림사, 무당파, 아미파, 곤륜파, 화산파, 점창파, 종남파, 청성파, 해남파, 개방[cite: 2]</li>
-                            <li><span class="highlight">오대세가:</span> 남궁세가, 사천당가, 하북팽가, 모용세가, 제갈세가[cite: 2]</li>
-                            <li><span class="highlight">주요행사:</span> 용봉지회(5/15), 비무대회(6/20), 무림맹회(8/10), 세가연회(10/15)[cite: 2]</li>
+                            <li><span class="highlight">구파일방:</span> 소림사, 무당파, 아미파, 곤륜파, 화산파, 점창파, 종남파, 청성파, 해남파, 개방</li>
+                            <li><span class="highlight">오대세가:</span> 남궁세가, 사천당가, 하북팽가, 모용세가, 제갈세가</li>
+                            <li><span class="highlight">주요행사:</span> 용봉지회(5/15), 비무대회(6/20), 무림맹회(8/10), 세가연회(10/15)</li>
 
                         </ul>
                     </div>
 
                     <div class="scroll-box">
                         <h3 class="highlight">사파 (邪派) </h3>
-                        <p>도덕적·철학적 기준에서 벗어나 현실적인 실리, 개인의 욕망, 힘 등을 추구하는 무림 세력[cite: 2].</p>
+                        <p>도덕적·철학적 기준에서 벗어나 현실적인 실리, 개인의 욕망, 힘 등을 추구하는 무림 세력.</p>
                         <ul>
-                            <li><span class="highlight">사도련:</span> 수라방, 하오문, 녹림, 장강수로채, 흑점 으로 이루어진 사파의 최고 연합[cite: 2]</li>
-                            <li><span class="highlight">주요행사:</span> 비무대회(7/20), 사도련회(9/10), 무명회(12/15, 비밀지하경매), 만상루(매월29일, 비밀지하투기 및 도박장)[cite: 2]</li>
+                            <li><span class="highlight">사도련:</span> 수라방, 하오문, 녹림, 장강수로채, 흑점 으로 이루어진 사파의 최고 연합</li>
+                            <li><span class="highlight">주요행사:</span> 비무대회(7/20), 사도련회(9/10), 무명회(12/15, 비밀지하경매), 만상루(매월29일, 비밀지하투기 및 도박장)</li>
                         </ul>
                     </div>
                 </div>
@@ -624,21 +699,21 @@
                 <div class="grid-2">
                     <div class="scroll-box">
                         <h3 class="highlight">천마신교(마교)</h3>
-			<p>천마를 숭배하고 무림 전체를 삼킬 강자존을 숭상하는 거대 종교 및 마공 세력[cite: 2].</p>
+			<p>천마를 숭배하고 무림 전체를 삼킬 강자존을 숭상하는 거대 종교 및 마공 세력.</p>
                     </div>
 
                     <div class="scroll-box">
                         <h3 class="highlight">혈교</h3>
-			<p>혈신을 숭배하고 무림을 파멸로 이끌며 피를 사용한 식인, 살육, 인신공양을 마다하지 않는 거대 종교 및 마공 세력[cite: 2].</p>
+			<p>혈신을 숭배하고 무림을 파멸로 이끌며 피를 사용한 식인, 살육, 인신공양을 마다하지 않는 거대 종교 및 마공 세력.</p>
                     </div>
                 </div>
 
                 <div class="grid-2">
                     <div class="scroll-box">
                         <h3 class="highlight">새외무림</h3>
-			<p>중원의 지배권과 전통적인 무림 체계를 벗어난 만리장성 밖의 무림세력[cite: 2].</p>
+			<p>중원의 지배권과 전통적인 무림 체계를 벗어난 만리장성 밖의 무림세력.</p>
                         <ul>
-                            <li><span class="highlight"> 북해빙궁, 남만야수궁</span>[cite: 2]</li>
+                            <li><span class="highlight"> 북해빙궁, 남만야수궁</span></li>
                         </ul>
                     </div>
                 </div>
