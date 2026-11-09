@@ -452,6 +452,70 @@
             font-size: 0.8rem;
         }
 
+        /* 비밀박스(토글) 스타일 추가 */
+        .secret-box-container {
+            margin-top: 15px;
+        }
+
+        .secret-toggle-btn {
+            background-color: rgba(139, 30, 30, 0.1);
+            color: var(--vermilion);
+            border: 1px dashed var(--vermilion);
+            padding: 8px 14px;
+            font-family: var(--font-title);
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .secret-toggle-btn:hover {
+            background-color: rgba(139, 30, 30, 0.2);
+        }
+
+        .secret-content {
+            display: none;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 18px 22px;
+            background-color: rgba(223, 207, 185, 0);
+            border: 1px solid var(--border-line);
+            font-size: 0.92rem;
+            color: var(--ink-dark);
+            animation: fadeIn 0.3s ease-in-out;
+            box-shadow: inset 0 0 15px rgba(100, 75, 45, 0.08), 2px 2px 5px rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        .secret-content.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 독자적인 커뮤니티 내부 구조 (글씨 좌측, 이미지 우측 정렬) */
+        .community-layout {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .community-text {
+            flex: 1;
+        }
+
+        .community-img {
+            flex-shrink: 0;
+            align-items: center;
+            text-align: center;
+        }
+
         /* ==========================================
            모바일 반응형 모드 (Screen Width < 900px)
         ========================================== */
@@ -535,6 +599,11 @@
             .scroll-box {
                 padding: 12px 15px;
             }
+
+            /* 모바일 환경에서는 커뮤니티 영역도 세로(1열)로 자연스럽게 정렬 */
+            .community-layout {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -551,10 +620,10 @@
             <!-- 목차 탭 (오른쪽 세로쓰기 -> 모바일 가로 스크롤 메뉴) -->
             <nav>
                 <button class="tab-btn active" onclick="openPage('p-intro')">제1장 서문</button>
-                <button class="tab-btn" onclick="openPage('p-martial')">제2장 무공에 대해서</button>
-                <button class="tab-btn" onclick="openPage('p-factions')">제3장 세력에 대해서</button>
-                <button class="tab-btn" onclick="openPage('p-spirit')">제4장 영물에 대해서</button>
-                <button class="tab-btn" onclick="openPage('p-chars')">제5장 인물에 대해서</button>
+                <button class="tab-btn" onclick="openPage('p-martial')">제2장 무공에 대하여</button>
+                <button class="tab-btn" onclick="openPage('p-factions')">제3장 세력에 대하여</button>
+                <button class="tab-btn" onclick="openPage('p-spirit')">제4장 영물에 대하여</button>
+                <button class="tab-btn" onclick="openPage('p-chars')">제5장 인물에 대하여</button>
             </nav>
 
             <!-- 제1장 서문 (왼쪽 가로쓰기) -->
@@ -589,15 +658,15 @@
 
             <!-- 제2장. 무공 및 경지 -->
             <div id="p-martial" class="page-content">
-                <h2 class="chapter-title">제2장 무공에 대하여</h2>
+                <h2 class="chapter-title">제2장 무공과 경지</h2>
 
 		<div class="scroll-box">
-		    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">武功</h3>
+		    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">무공 (武功)</h3>
 		    <p>무공이란 단순한 살상이나 격투의 기술이 아니며, 범인의 한계를 벗어나 천지간에 넘실거리는 영기를 육신에 가두고 <strong>내공(체내의 기)</strong>으로 축적한 뒤 이를 의지에 따라 발현하여 인간을 초인의 반열에 올리는 절대의 법문이다. 또한 <strong>외공(육체 단련)</strong>을 단련하며 <strong>초식(기술)</strong>을 이해해 무술의 끝에 다다르기 위한 노력도 필요하다.</p>
 		</div>
 
                 <div class="scroll-box">
-                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">속성(屬性)</h3>
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">속성 (屬性)</h3>
                     <p><strong>[계열]</strong> 正(정기·중정·벽사·안정) | 魔(기·폭주·침식·패도) | 無(중립·무속성)</p>
                     <p><strong>[종류]</strong> 陰(음한·냉기·태음) | 陽(양강·열기·순양) | 毒(독기·독공/내력에 독성혼입) | 神(정신/심상) | 淸(청정/내력 강제로 순수유지·이질적기운+불순물 배척)</p>
                     <p style="color: var(--vermilion); margin-top: 5px;"><strong>[상극]</strong> 正(정) ↔ 魔(마) | 陰(음) ↔ 陽(양) | 毒(독) ↔ 淸(청)</p>
@@ -605,7 +674,7 @@
                 </div>
 
                 <div class="scroll-box">
-                    <h3 class="highlight" style="font-size: 1.1rem;">경지(境地)</h3>
+                    <h3 class="highlight" style="font-size: 1.1rem;">경지 (境地)</h3>
                     <p style="font-size: 0.85rem; color: var(--vermilion);">※ 경지 차이가 2단계 이상 차이날 시 승리할 확률은 극히 저하된다.</p>
                     <div class="table-responsive">
                         <table>
@@ -670,7 +739,7 @@
 
             <!-- 제3장. 세력에 대해서 -->
             <div id="p-factions" class="page-content">
-                <h2 class="chapter-title">제3장 세력에 대하여</h2>
+                <h2 class="chapter-title">제3장 무림의 세력</h2>
 
                 <div class="grid-2">
                     <div class="scroll-box">
@@ -698,20 +767,26 @@
 
                 <div class="grid-2">
                     <div class="scroll-box">
-                        <h3 class="highlight">천마신교(마교)</h3>
+                        <h3 class="highlight">천마신교 (天魔神敎) / 마교 (魔敎)</h3>
 			<p>천마를 숭배하고 무림 전체를 삼킬 강자존을 숭상하는 거대 종교 및 마공 세력.</p>
+			<div style="text-align: center;">
+				<img src="", alt="" style="width: 70%; max-width: 300px; height: auto;">
+			</div>
                     </div>
 
                     <div class="scroll-box">
-                        <h3 class="highlight">혈교</h3>
+                        <h3 class="highlight">혈교 (血敎)</h3>
 			<p>혈신을 숭배하고 무림을 파멸로 이끌며 피를 사용한 식인, 살육, 인신공양을 마다하지 않는 거대 종교 및 마공 세력.</p>
+			<div style="text-align: center;">
+				<img src="", alt="" style="width: 70%; max-width: 300px; height: auto;">
+			</div>
                     </div>
                 </div>
 
                 <div class="grid-2">
                     <div class="scroll-box">
-                        <h3 class="highlight">새외무림</h3>
-			<p>중원의 지배권과 전통적인 무림 체계를 벗어난 만리장성 밖의 무림세력.</p>
+                        <h3 class="highlight">새외무림 (塞外武林)</h3>
+			<p>중원의 지배권과 전통적인 무림 체계를 벗어난 만리장성 밖의 무림력.</p>
                         <ul>
                             <li><span class="highlight"> 북해빙궁, 남만야수궁</span></li>
                         </ul>
@@ -726,24 +801,50 @@
 
             <!-- 제4장. 영물에 대해서 -->
             <div id="p-spirit" class="page-content">
-                <h2 class="chapter-title">제4장. 영물(靈物) 및 영약(靈藥)</h2>
+                <h2 class="chapter-title">제4장 영약과 영물</h2>
 
                 <div class="scroll-box">
-                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">영물(靈物) 비밀 설정</h3>
-                    <p>오래 산 짐승 중 내단을 보유하고 정순한 내력과 지능을 지닌 존재들입니다.</p>
-                    <ul style="margin-top:8px;">
-                        <li><span class="highlight">특징:</span> 불로장생 / 모든 동물과 대화 / 인간 변신 (동공·눈색·머리색에 본체 특징 계승)</li>
-                        <li><span class="highlight">영물계 문양:</span> 월우성인(月羽星印: 초승달+깃털)</li>
-                        <li><span class="highlight">비밀 암호:</span> "달이 비친 물 위에 띄워진 깃털의 무늬?" → <strong>"점박이"</strong> (행동: 여우손)</li>
-                        <li><span class="highlight">특수 화폐:</span> 영석(靈石 - 영물의 내력을 담은 돌)</li>
-                    </ul>
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">영약 (靈藥)</h3>
+		    <p>영묘한 효험이 있는 약</p>
+		    <ul style="margin-bottom: 0px;">
+			<li><strong>영단:</strong> 사람이 제조한 인공 영약 (대환단, 태청단 등)</li>
+			<li><strong>자연영약:</strong> 자연에서 탄생한 영약 (백년설삼, 만년하수오, 빙정, 영물의 내단 등)</li>
+			<li><strong>등급:</strong> 下(하급) &lt; 中(중급) &lt; 上(상급) &lt; 最상(최상급) &lt; 寶(무가지보)</li>
+		    </ul>
                 </div>
 
                 <div class="scroll-box">
-                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">영약 분류 및 등급</h3>
-                    <p><strong>[영단]</strong> 사람이 재료와 내공으로 제조한 인공 영약.</p>
-                    <p><strong>[자연영약]</strong> 백년설삼, 만년하수오, 빙정 등 천연 약재 및 영물의 내단.</p>
-                    <p style="margin-top:8px; color:var(--vermilion); font-weight:bold;">[등급] 下(하급) &lt; 中(중급) &lt; 上(상급) &lt; 最上(최상급) &lt; 寶(무가지보)</p>
+                    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">영물 (靈物)</h3>
+                    <p>천지의 영험한 기운을 오랜 세월 머금어 신비한 능력과 영성을 지니게 된 동식물</p>
+                    <ul style="margin-top:8px;">
+                        <li><strong>특징:</strong> 내단을 보유, 다른 짐승들보다 높은 지능을 가짐</li>
+                    </ul>
+
+                    <!-- 추가된 비밀박스 (클릭 시 토글 display) -->
+                    <div class="secret-box-container">
+                        <button class="secret-toggle-btn" onclick="toggleSecretBox()">[ 🔒비밀자료 (祕密資料)🔒 ]</button>
+                        <div id="secretBoxContent" class="secret-content">
+			    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;"> 진실 (眞實)</h3>
+			    <p>영물은 <strong>오랜 시간 영험한 기운을 쌓아 내단을 생성하고 인간으로 변신이 가능한 자들</strong>을 뜻하며 자연 속에 숨거나 인간들 사이에 섞여 살아간다.</p>
+			    <ul style="margin-top:8px;">
+				<li><strong>특징:</strong> 불로장생, 모든 동물과 대화 가능, 인간으로 둔갑(동공, 눈 색, 머리 색은 본체의 특징을 계승)</li>
+			    </ul>
+			    <div class="scroll-box">
+				<h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">독자적인 커뮤니티</h3>
+                                <div class="community-layout">
+				    <div class="community-text">
+					<p><span class="highlight">[상징문양]</span> 월우성인 (月羽星印)</p>
+					<p><span class="highlight">[업계특징]</span> 영물 또는 영물을 아는 인간과 암호확인 후 영물들만의 물건 및 의뢰 거래</p>
+					<p><span class="highlight">[암호]</span> 달이 비친 물 위에 띄워진 깃털의 무늬는 <strong>점박이</strong> / 여우손 행동</p>
+					<p><span class="highlight">[화폐]</span> 인간화폐, 영석(靈石, 영물의 내력을 담은 돌)</p>
+ 				    </div>
+				    <div class="community-img">
+					<img src="https://raw.githubusercontent.com/ssbin0507/chat_Jgh/refs/heads/main/docs/img/spirit_symbol.webp" alt="월우성인_문양" style="width: 100%; max-width: 200px; height: auto;">
+				    </div>
+				</div>
+			    </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- 서책 푸터 -->
@@ -754,10 +855,9 @@
 
             <!-- 제5장. 강호 인물록 -->
             <div id="p-chars" class="page-content">
-                <h2 class="chapter-title">제5장. 주요 강호 인물록 (Main CHAR)</h2>
+                <h2 class="chapter-title">제5장 강호의 주요 인물록</h2>
 
                 <div class="grid-3">
-
                     <!-- 정파 문파 -->
                     <div class="char-card">
                         <div class="char-head">묘련 (연화) <span class="badge badge-red">女/人</span></div>
@@ -867,7 +967,7 @@
         </div>
     </div>
 
-    <!-- 탭 페이지 전환 자바스크립트 -->
+    <!-- 탭 페이지 전환 및 비밀박스 토글 자바스크립트 -->
     <script>
         function openPage(pageId) {
             // 모든 페이지 숨기기
@@ -881,6 +981,12 @@
             // 선택된 페이지 및 버튼 활성화
             document.getElementById(pageId).classList.add('active');
             event.currentTarget.classList.add('active');
+        }
+
+        // 비밀박스 토글 함수 추가
+        function toggleSecretBox() {
+            const secretContent = document.getElementById('secretBoxContent');
+            secretContent.classList.toggle('show');
         }
     </script>
 </body>
