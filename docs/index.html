@@ -339,51 +339,6 @@
             border: 1px solid #5e4713;
         }
 
-        /* 인물 전용 태그 카드 */
-        .char-card {
-            background-color: rgba(235, 222, 200, 0.7);
-            border: 1px solid var(--border-line);
-            padding: 15px;
-            border-left: 5px solid var(--border-line);
-            transition: all 0.3s ease;
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.06);
-            position: relative;
-        }
-
-        .char-card:hover {
-            border-left-color: var(--vermilion);
-            background-color: rgba(245, 235, 218, 0.95);
-            transform: translateY(-2px);
-            box-shadow: 4px 6px 12px rgba(0,0,0,0.15);
-        }
-
-        .char-head {
-            font-family: var(--font-title);
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--ink-dark);
-            border-bottom: 1px dashed var(--border-faded);
-            padding-bottom: 6px;
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .char-info {
-            font-size: 0.88rem;
-            color: #6b5014;
-            font-weight: 700;
-            margin-bottom: 8px;
-            font-family: var(--font-title);
-        }
-
-        .char-desc {
-            font-size: 0.92rem;
-            color: var(--ink-light);
-            line-height: 1.6;
-        }
-
         /* 고서적 표 디자인 */
         .table-responsive {
             width: 100%;
@@ -510,6 +465,260 @@
         }
 
         /* ==========================================
+           [제5장 전용] 무협 인물록(人物錄) 고서적 스타일
+        ========================================== */
+        .person-record-group {
+            margin-bottom: 25px;
+            border: 1px solid var(--border-line);
+            background-color: rgba(220, 204, 180, 0.4);
+            padding: 18px 20px;
+            box-shadow: inset 0 0 10px rgba(74, 56, 44, 0.1);
+            position: relative;
+        }
+
+        .person-record-group::before {
+            content: "";
+            position: absolute;
+            top: 4px; left: 4px; right: 4px; bottom: 4px;
+            border: 1px solid var(--border-faded);
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .record-category-header {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--vermilion);
+            border-bottom: 2px dashed var(--border-line);
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .record-category-header::before {
+            content: "卷";
+            font-size: 0.85rem;
+            background-color: var(--ink-dark);
+            color: var(--paper-bg);
+            padding: 1px 6px;
+            margin-right: 8px;
+            border-radius: 2px;
+            font-family: var(--font-title);
+        }
+
+        .person-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .person-entry {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(74, 56, 44, 0.2);
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+            position: relative;
+        }
+
+        .person-entry:last-child {
+            border-bottom: none;
+        }
+
+        .person-entry:hover {
+            background-color: rgba(139, 30, 30, 0.08);
+            transform: translateX(4px);
+        }
+
+        .person-entry-left {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .person-name {
+            font-family: var(--font-title);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--ink-dark);
+            letter-spacing: 1px;
+        }
+
+        .person-alias {
+            font-size: 0.95rem;
+            color: var(--vermilion);
+            font-weight: 700;
+            font-family: var(--font-title);
+        }
+
+        .person-meta {
+            font-size: 0.88rem;
+            color: #5c4333;
+            font-family: var(--font-body);
+        }
+
+        .person-click-seal {
+            font-family: var(--font-title);
+            font-size: 0.78rem;
+            color: var(--vermilion);
+            border: 1px solid var(--vermilion);
+            padding: 1px 6px;
+            border-radius: 2px;
+            opacity: 0.85;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        /* ------------------------------------------
+           [팝업/모달] 인물 상세 정보 (祕錄 詳情)
+        ------------------------------------------ */
+        .char-modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: rgba(10, 7, 5, 0.75);
+            backdrop-filter: blur(3px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .char-modal-backdrop.open {
+            display: flex;
+            animation: fadeIn 0.25s ease-out forwards;
+        }
+
+        .char-modal {
+            background-color: var(--paper-bg);
+            background-image: 
+                radial-gradient(ellipse at center, rgba(245, 235, 215, 0.7) 0%, rgba(205, 180, 145, 0.8) 100%),
+                repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 1px, transparent 1px, transparent 3px);
+            border: 4px solid #2b1d14;
+            outline: 2px solid #5c4333;
+            outline-offset: -5px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
+            width: 100%;
+            max-width: 680px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 28px;
+            position: relative;
+            color: var(--ink-black);
+            border-radius: 2px;
+        }
+
+        .char-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            background: transparent;
+            border: 1px solid var(--border-line);
+            color: var(--ink-dark);
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 32px;
+            height: 32px;
+            line-height: 28px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .char-modal-close:hover {
+            background-color: var(--vermilion);
+            color: #fff;
+            border-color: var(--vermilion);
+        }
+
+        .modal-body-layout {
+            display: flex;
+            gap: 22px;
+            margin-top: 15px;
+        }
+
+        .modal-portrait-area {
+            width: 170px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .portrait-frame {
+            width: 100%;
+            height: 220px;
+            border: 2px solid var(--border-line);
+            background-color: rgba(200, 180, 150, 0.5);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portrait-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.25) contrast(1.05);
+        }
+
+        .portrait-placeholder {
+            text-align: center;
+            color: var(--border-faded);
+            font-family: var(--font-title);
+            font-size: 0.88rem;
+            padding: 10px;
+        }
+
+        .modal-info-area {
+            flex: 1;
+        }
+
+        .modal-char-name {
+            font-family: var(--font-title);
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: var(--ink-dark);
+            border-bottom: 2px solid var(--vermilion);
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-char-detail-list {
+            margin-bottom: 15px;
+            border-bottom: 1px dashed var(--border-faded);
+            padding-bottom: 10px;
+        }
+
+        .modal-char-detail-list p {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            line-height: 1.6;
+        }
+
+        .modal-char-desc {
+            font-size: 0.98rem;
+            line-height: 1.85;
+            background-color: rgba(225, 210, 185, 0.4);
+            padding: 14px;
+            border-left: 3px solid var(--border-line);
+            font-family: var(--font-body);
+        }
+
+        /* ==========================================
            모바일 반응형 모드 (Screen Width < 900px)
         ========================================== */
         @media (max-width: 900px) {
@@ -596,6 +805,16 @@
             /* 모바일 환경에서는 커뮤니티 영역도 세로(1열)로 자연스럽게 정렬 */
             .community-layout {
                 flex-direction: column;
+            }
+
+            /* 팝업 모바일 대응 */
+            .modal-body-layout {
+                flex-direction: column;
+                align-items: center;
+            }
+            .modal-portrait-area {
+                width: 100%;
+                max-width: 200px;
             }
         }
     </style>
@@ -844,110 +1063,171 @@
                 </footer>
             </div>
 
-            <!-- 제5장. 강호 인물록 -->
+            <!-- 제5장. 강호 인물록 (무협 고서적 인물록 스타일로 변경됨) -->
             <div id="p-chars" class="page-content">
                 <h2 class="chapter-title">제5장 강호 내 주요인물록</h2>
 
-                <div class="grid-3">
-                    <!-- 정파 문파 -->
-                    <div class="char-card">
-                        <div class="char-head">묘련 (연화) <span class="badge badge-red">女/人</span></div>
-                        <div class="char-info">69세 | 화경 | 유운신니 | 아미 장문인</div>
-                        <div class="char-desc">따뜻하고 다정하며 부드러운 아주머니 말투.</div>
-                    </div>
+                <!-- 정파 문파 인물록 -->
+                <div class="person-record-group">
+                    <div class="record-category-header">正派 門派 人物錄 (정파 문파)</div>
+                    <ul class="person-list">
+                        <li class="person-entry" onclick="openCharModal('묘련 (연화)', '유운신니 (柔雲神尼)', '女 / 人', '69세', '화경 (化境)', '아미파 (娥眉派) 장문인', '따뜻하고 다정하며 부드러운 아주머니 말투.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">묘련 (연화)</span>
+                                <span class="person-alias">「유운신니」</span>
+                                <span class="person-meta">아미 장문인 · 69세 · 화경</span>
+                                <span class="badge badge-red">女/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('청한 (철호)', '한운진인 (閑雲眞人)', '男 / 人', '53세', '초절정 (超絶頂)', '무당파 (武當派) 장로', '느긋하고 여유로우며 장난기 넘치는 도사.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">청한 (철호)</span>
+                                <span class="person-alias">「한운진인」</span>
+                                <span class="person-meta">무당 장로 · 53세 · 초절정</span>
+                                <span class="badge badge-gold">男/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('백한', '광매검 (狂梅劍)', '男 / 人', '28세', '일류 (一流)', '화산파 (華山派) 제자', '호전적이고 거칠며 직설적인 양아치 형님.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">백한</span>
+                                <span class="person-alias">「광매검」</span>
+                                <span class="person-meta">화산 제자 · 28세 · 일류</span>
+                                <span class="badge badge-gold">男/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('진영', '미상', '女 / 人', '18세', '이류 (二流)', '곤륜파 (崑崙派) 제자', '우아함과 예의를 차리나 덜렁대는 아가씨.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">진영</span>
+                                <span class="person-meta">곤륜 제자 · 18세 · 이류</span>
+                                <span class="badge badge-red">女/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('진희 (청애)', '미상', '女 / 人', '19세', '이류 (二流)', '종남파 (終南派) 제자', '밝고 상냥하며 우아한 햇살 같은 캐릭터.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">진희 (청애)</span>
+                                <span class="person-meta">종남 제자 · 19세 · 이류</span>
+                                <span class="badge badge-red">女/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('운월 (백리운)', '청풍단사 (靑風丹士)', '男 / 人', '27세', '일류 (一流)', '청성파 (靑城派) 연단사', '소심하고 은거하기 좋아하는 히키코모리 연단사.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">운월 (백리운)</span>
+                                <span class="person-alias">「청풍단사」</span>
+                                <span class="person-meta">청성 연단사 · 27세 · 일류</span>
+                                <span class="badge badge-gold">男/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                    </ul>
+                </div>
 
-                    <div class="char-card">
-                        <div class="char-head">청한 (철호) <span class="badge badge-gold">男/人</span></div>
-                        <div class="char-info">53세 | 초절정 | 한운진인 | 무당 장로</div>
-                        <div class="char-desc">느긋하고 여유로우며 장난기 넘치는 도사.</div>
-                    </div>
+                <!-- 무림세가 인물록 -->
+                <div class="person-record-group">
+                    <div class="record-category-header">武林世家 人物錄 (무림세가)</div>
+                    <ul class="person-list">
+                        <li class="person-entry" onclick="openCharModal('남궁휘', '군자검 (君子劍)', '男 / 人', '28세', '일류 (一流)', '남궁세가 (南宮世家) 소가주', '정중하고 예의바르며 정의로운 도련님.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">남궁휘</span>
+                                <span class="person-alias">「군자검」</span>
+                                <span class="person-meta">남궁 소가주 · 28세 · 일류</span>
+                                <span class="badge badge-gold">男/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('당이현', '유화독수 (柔花毒手)', '男 / 人', '29세', '절정 (絶頂)', '사천당가 (四川唐門) 소가주', '능글맞고 가벼우며 농담을 즐기는 한량.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">당이현</span>
+                                <span class="person-alias">「유화독수」</span>
+                                <span class="person-meta">당가 소가주 · 29세 · 절정</span>
+                                <span class="badge badge-gold">男/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('팽소화', '천뢰여걸 (天雷女傑)', '女 / 人', '32세', '절정 (絶頂)', '하북팽가 (河北彭家) 직계', '솔직하고 시원시원하며 호쾌한 여걸.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">팽소화</span>
+                                <span class="person-alias">「천뢰여걸」</span>
+                                <span class="person-meta">팽가 직계 · 32세 · 절정</span>
+                                <span class="badge badge-red">女/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('제갈현', '청운책사 (靑雲策士)', '男 / 人', '31세', '이류 (二流)', '제갈세가 (諸葛世家) 소가주', '오만하고 지식을 과시하는 츤데레 지략가.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">제갈현</span>
+                                <span class="person-alias">「청운책사」</span>
+                                <span class="person-meta">제갈 소가주 · 31세 · 이류</span>
+                                <span class="badge badge-gold">男/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                    </ul>
+                </div>
 
-                    <div class="char-card">
-                        <div class="char-head">백한 <span class="badge badge-gold">男/人</span></div>
-                        <div class="char-info">28세 | 일류 | 광매검 | 화산 제자</div>
-                        <div class="char-desc">호전적이고 거칠며 직설적인 양아치 형님.</div>
-                    </div>
-
-                    <div class="char-card">
-                        <div class="char-head">진영 <span class="badge badge-red">女/人</span></div>
-                        <div class="char-info">18세 | 이류 | 곤륜 제자</div>
-                        <div class="char-desc">우아함과 예의를 차리나 덜렁대는 아가씨.</div>
-                    </div>
-
-                    <div class="char-card">
-                        <div class="char-head">진희 (청애) <span class="badge badge-red">女/人</span></div>
-                        <div class="char-info">19세 | 이류 | 종남 제자</div>
-                        <div class="char-desc">밝고 상냥하며 우아한 햇살 같은 캐릭터.</div>
-                    </div>
-
-                    <div class="char-card">
-                        <div class="char-head">운월 (백리운) <span class="badge badge-gold">男/人</span></div>
-                        <div class="char-info">27세 | 일류 | 청풍단사 | 청성 연단사</div>
-                        <div class="char-desc">소심하고 은거하기 좋아하는 히키코모리.</div>
-                    </div>
-
-                    <!-- 세가 -->
-                    <div class="char-card">
-                        <div class="char-head">남궁휘 <span class="badge badge-gold">男/人</span></div>
-                        <div class="char-info">28세 | 일류 | 군자검 | 남궁 소가주</div>
-                        <div class="char-desc">정중하고 예의바르며 정의로운 도련님.</div>
-                    </div>
-
-                    <div class="char-card">
-                        <div class="char-head">당이현 <span class="badge badge-gold">男/人</span></div>
-                        <div class="char-info">29세 | 절정 | 유화독수 | 당가 소가주</div>
-                        <div class="char-desc">능글맞고 가벼우며 농담을 즐기는 한량.</div>
-                    </div>
-
-                    <div class="char-card">
-                        <div class="char-head">팽소화 <span class="badge badge-red">女/人</span></div>
-                        <div class="char-info">32세 | 절정 | 천뢰여걸 | 팽가 직계</div>
-                        <div class="char-desc">솔직하고 시원시원하며 호쾌한 여걸.</div>
-                    </div>
-
-                    <div class="char-card">
-                        <div class="char-head">제갈현 <span class="badge badge-gold">男/人</span></div>
-                        <div class="char-info">31세 | 이류 | 청운책사 | 제갈 소가주</div>
-                        <div class="char-desc">오만하고 지식을 과시하는 츤데레 지략가.</div>
-                    </div>
-
-                    <!-- 사파 및 기타 -->
-                    <div class="char-card">
-                        <div class="char-head">자야 <span class="badge badge-gold">男/人</span></div>
-                        <div class="char-info">47세 | 화경 | 수라광견 | 사파련주</div>
-                        <div class="char-desc">무심하고 느긋하나 싸울 땐 해맑은 싸움광.</div>
-                    </div>
-
-                    <div class="char-card">
-                        <div class="char-head">하해서 <span class="badge badge-red">女/人</span></div>
-                        <div class="char-info">39세 | 절정 | 벽해마령 | 장강 수로채주</div>
-                        <div class="char-desc">도발적이고 거침없는 해적선장.</div>
-                    </div>
-
-                    <div class="char-card">
-                        <div class="char-head">흑영 <span class="badge badge-gold">男/人</span></div>
-                        <div class="char-info">37세 | 절정 | 무면구 | 흑점 대점주</div>
-                        <div class="char-desc">차갑고 건조하며 효율을 추구하는 살수.</div>
-                    </div>
-
-                    <div class="char-card">
-                        <div class="char-head">천무영 <span class="badge badge-dark">男/人</span></div>
-                        <div class="char-info">미상 | 현경 | 천마 | 마교 교주</div>
-                        <div class="char-desc">감정이 희박하고 모든 것에 무심한 천마.</div>
-                    </div>
-
-                    <div class="char-card">
-                        <div class="char-head">혈홍매 <span class="badge badge-red">女/人</span></div>
-                        <div class="char-info">25세 | 초절정 | 혈마신녀 | 혈교 교주</div>
-                        <div class="char-desc">변덕스럽고 비틀린 천진난만 광인.</div>
-                    </div>
-
-                    <div class="char-card">
-                        <div class="char-head">연홍하 (화련) <span class="badge badge-gold">女/靈</span></div>
-                        <div class="char-info">미상 | 초절정 | 홍염요희 | 만화루주</div>
-                        <div class="char-desc">능청스럽고 매혹적인 기녀이자 정보상.</div>
-                    </div>
-
+                <!-- 사파 및 기타 인물록 -->
+                <div class="person-record-group">
+                    <div class="record-category-header">邪派 及 諸勢力 人物錄 (사파 및 기타 세력)</div>
+                    <ul class="person-list">
+                        <li class="person-entry" onclick="openCharModal('자야', '수라광견 (修羅狂犬)', '男 / 人', '47세', '화경 (化境)', '사도련 (邪道聯) 련주', '무심하고 느긋하나 싸울 땐 해맑은 싸움광.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">자야</span>
+                                <span class="person-alias">「수라광견」</span>
+                                <span class="person-meta">사파련주 · 47세 · 화경</span>
+                                <span class="badge badge-gold">男/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('하해서', '벽해마령 (碧海魔靈)', '女 / 人', '39세', '절정 (絶頂)', '장강수로채 (長江水路寨) 채주', '도발적이고 거침없는 해적선장.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">하해서</span>
+                                <span class="person-alias">「벽해마령」</span>
+                                <span class="person-meta">장강 수로채주 · 39세 · 절정</span>
+                                <span class="badge badge-red">女/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('흑영', '무면구 (無面鬼)', '男 / 人', '37세', '절정 (絶頂)', '흑점 (黑店) 대점주', '차갑고 건조하며 효율을 추구하는 살수.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">흑영</span>
+                                <span class="person-alias">「무면구」</span>
+                                <span class="person-meta">흑점 대점주 · 37세 · 절정</span>
+                                <span class="badge badge-gold">男/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('천무영', '천마 (天魔)', '男 / 人', '미상', '현경 (玄境)', '천마신교 (天魔神敎) 교주', '감정이 희박하고 모든 것에 무심한 천마.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">천무영</span>
+                                <span class="person-alias">「천마」</span>
+                                <span class="person-meta">마교 교주 · 미상 · 현경</span>
+                                <span class="badge badge-dark">男/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('혈홍매', '혈마신녀 (血魔神女)', '女 / 人', '25세', '초절정 (超絶頂)', '혈교 (血敎) 교주', '변덕스럽고 비틀린 천진난만 광인.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">혈홍매</span>
+                                <span class="person-alias">「혈마신녀」</span>
+                                <span class="person-meta">혈교 교주 · 25세 · 초절정</span>
+                                <span class="badge badge-red">女/人</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('연홍하 (화련)', '홍염요희 (紅焰妖姬)', '女 / 靈', '미상', '초절정 (超絶頂)', '만화루 (萬花樓) 루주', '능청스럽고 매혹적인 기녀이자 정보상.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">연홍하 (화련)</span>
+                                <span class="person-alias">「홍염요희」</span>
+                                <span class="person-meta">만화루주 · 미상 · 초절정</span>
+                                <span class="badge badge-gold">女/靈</span>
+                            </div>
+                            <span class="person-click-seal">詳情 閱覽</span>
+                        </li>
+                    </ul>
                 </div>
 
                 <!-- 서책 푸터 -->
@@ -958,7 +1238,46 @@
         </div>
     </div>
 
-    <!-- 탭 페이지 전환 및 비밀박스 토글 자바스크립트 -->
+    <!-- 인물 상세 정보 모달 팝업 -->
+    <div id="charModalBackdrop" class="char-modal-backdrop" onclick="closeCharModalOnBackdrop(event)">
+        <div class="char-modal">
+            <button class="char-modal-close" onclick="closeCharModal()">✕</button>
+            
+            <div class="modal-char-name">
+                <span id="mName">인물명</span>
+                <span id="mAlias" style="font-size: 1.05rem; color: var(--vermilion);">외호</span>
+            </div>
+
+            <div class="modal-body-layout">
+                <div class="modal-portrait-area">
+                    <div class="portrait-frame">
+                        <img id="mImg" src="" alt="인물 초상화" style="display:none;">
+                        <div id="mImgPlaceholder" class="portrait-placeholder">
+                            <span>[ 肖像畫 / 容貌 ]<br><br>등록된 초상화가<br>없습니다</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-info-area">
+                    <div class="modal-char-detail-list">
+                        <p><strong>[신분/종족]</strong> <span id="mSpecies">-</span></p>
+                        <p><strong>[연령/연세]</strong> <span id="mAge">-</span></p>
+                        <p><strong>[무공경지]</strong> <span id="mRealm" class="highlight">-</span></p>
+                        <p><strong>[문파/소속]</strong> <span id="mFaction">-</span></p>
+                    </div>
+
+                    <div style="font-family: var(--font-title); font-weight: bold; margin-bottom: 6px; color: var(--ink-dark);">
+                        [ 人物 略歷 및 性情 ]
+                    </div>
+                    <div id="mDesc" class="modal-char-desc">
+                        인물에 대한 상세 성격 및 성정 정보가 기재됩니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 탭 페이지 전환 및 비밀박스, 인물 팝업 토글 자바스크립트 -->
     <script>
         function openPage(pageId) {
             // 모든 페이지 숨기기
@@ -974,10 +1293,48 @@
             event.currentTarget.classList.add('active');
         }
 
-        // 비밀박스 토글 함수 추가
+        // 비밀박스 토글 함수
         function toggleSecretBox() {
             const secretContent = document.getElementById('secretBoxContent');
             secretContent.classList.toggle('show');
+        }
+
+        // 제5장 인물 상세 팝업 열기 함수
+        function openCharModal(name, alias, species, age, realm, faction, desc, imgSrc) {
+            document.getElementById('mName').innerText = name;
+            document.getElementById('mAlias').innerText = alias !== '미상' ? alias : '';
+            document.getElementById('mSpecies').innerText = species;
+            document.getElementById('mAge').innerText = age;
+            document.getElementById('mRealm').innerText = realm;
+            document.getElementById('mFaction').innerText = faction;
+            document.getElementById('mDesc').innerText = desc;
+
+            const imgEl = document.getElementById('mImg');
+            const placeholderEl = document.getElementById('mImgPlaceholder');
+
+            if (imgSrc && imgSrc.trim() !== '') {
+                imgEl.src = imgSrc;
+                imgEl.style.display = 'block';
+                placeholderEl.style.display = 'none';
+            } else {
+                imgEl.src = '';
+                imgEl.style.display = 'none';
+                placeholderEl.style.display = 'block';
+            }
+
+            document.getElementById('charModalBackdrop').classList.add('open');
+        }
+
+        // 팝업 닫기 함수
+        function closeCharModal() {
+            document.getElementById('charModalBackdrop').classList.remove('open');
+        }
+
+        // 배경 클릭 시 팝업 닫기
+        function closeCharModalOnBackdrop(event) {
+            if (event.target.id === 'charModalBackdrop') {
+                closeCharModal();
+            }
         }
     </script>
 </body>
