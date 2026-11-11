@@ -519,7 +519,6 @@
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            padding: 10px 12px;
             border-bottom: 1px solid rgba(74, 56, 44, 0.2);
             cursor: pointer;
             transition: background-color 0.2s ease, transform 0.15s ease;
@@ -542,37 +541,25 @@
             flex-wrap: wrap;
         }
 
-        .person-name {
-            font-family: var(--font-title);
+        .person-alias {
             font-size: 1.15rem;
+            color: var(--vermilion);
             font-weight: 800;
-            color: var(--ink-dark);
+            font-family: var(--font-title);
             letter-spacing: 1px;
         }
 
-        .person-alias {
-            font-size: 0.95rem;
-            color: var(--vermilion);
-            font-weight: 700;
+        .person-name {
             font-family: var(--font-title);
+            font-size: 1.0rem;
+            font-weight: 700;
+            color: var(--ink-dark);
         }
 
         .person-meta {
             font-size: 0.88rem;
             color: #5c4333;
             font-family: var(--font-body);
-        }
-
-        .person-click-seal {
-            font-family: var(--font-title);
-            font-size: 0.78rem;
-            color: var(--vermilion);
-            border: 1px solid var(--vermilion);
-            padding: 1px 6px;
-            border-radius: 2px;
-            opacity: 0.85;
-            letter-spacing: 1px;
-            white-space: nowrap;
         }
 
         /* ------------------------------------------
@@ -1069,166 +1056,181 @@
 
                 <!-- 정파 문파 인물록 -->
                 <div class="person-record-group">
-                    <div class="record-category-header">正派 門派 人物錄 (정파 문파)</div>
+                    <div class="record-category-header">구파일방 (九派一幇)</div>
                     <ul class="person-list">
-                        <li class="person-entry" onclick="openCharModal('묘련 (연화)', '유운신니 (柔雲神尼)', '女 / 人', '69세', '화경 (化境)', '아미파 (娥眉派) 장문인', '따뜻하고 다정하며 부드러운 아주머니 말투.', '')">
+                        <li class="person-entry" onclick="openCharModal('묘련 (연화)', '유운신니 (柔雲神尼)', '女', '69세', '화경 (化境)', '아미파 (娥眉派) 장문인', '따뜻하고 다정하며 부드러운 아주머니 말투.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">묘련 (연화)</span>
                                 <span class="person-alias">「유운신니」</span>
-                                <span class="person-meta">아미 장문인 · 69세 · 화경</span>
-                                <span class="badge badge-red">女/人</span>
+                                <span class="person-name">묘련</span>
+                                <span class="person-meta">69세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-red">女</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('청한 (철호)', '한운진인 (閑雲眞人)', '男 / 人', '53세', '초절정 (超絶頂)', '무당파 (武當派) 장로', '느긋하고 여유로우며 장난기 넘치는 도사.', '')">
+                        <li class="person-entry" onclick="openCharModal('청한 (철호)', '한운진인 (閑雲眞人)', '男', '53세', '초절정 (超絶頂)', '무당파 (武當派) 장로', '느긋하고 여유로우며 장난기 넘치는 도사.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">청한 (철호)</span>
                                 <span class="person-alias">「한운진인」</span>
-                                <span class="person-meta">무당 장로 · 53세 · 초절정</span>
-                                <span class="badge badge-gold">男/人</span>
+                                <span class="person-name">청한</span>
+                                <span class="person-meta">53세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('백한', '광매검 (狂梅劍)', '男 / 人', '28세', '일류 (一流)', '화산파 (華山派) 제자', '호전적이고 거칠며 직설적인 양아치 형님.', '')">
+                        <li class="person-entry" onclick="openCharModal('백한', '광매검 (狂梅劍)', '男', '28세', '일류 (一流)', '화산파 (華山派) 제자', '호전적이고 거칠며 직설적인 양아치 형님.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">백한</span>
                                 <span class="person-alias">「광매검」</span>
-                                <span class="person-meta">화산 제자 · 28세 · 일류</span>
-                                <span class="badge badge-gold">男/人</span>
+                                <span class="person-name">백한</span>
+                                <span class="person-meta">28세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('진영', '미상', '女 / 人', '18세', '이류 (二流)', '곤륜파 (崑崙派) 제자', '우아함과 예의를 차리나 덜렁대는 아가씨.', '')">
+                        <li class="person-entry" onclick="openCharModal('진영', '미상', '女', '18세', '이류 (二流)', '곤륜파 (崑崙派) 제자', '우아함과 예의를 차리나 덜렁대는 아가씨.', '')">
                             <div class="person-entry-left">
                                 <span class="person-name">진영</span>
-                                <span class="person-meta">곤륜 제자 · 18세 · 이류</span>
-                                <span class="badge badge-red">女/人</span>
+                                <span class="person-meta">18세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-red">女</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('진희 (청애)', '미상', '女 / 人', '19세', '이류 (二流)', '종남파 (終南派) 제자', '밝고 상냥하며 우아한 햇살 같은 캐릭터.', '')">
+                        <li class="person-entry" onclick="openCharModal('진희 (청애)', '미상', '女', '19세', '이류 (二流)', '종남파 (終南派) 제자', '밝고 상냥하며 우아한 햇살 같은 캐릭터.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">진희 (청애)</span>
-                                <span class="person-meta">종남 제자 · 19세 · 이류</span>
-                                <span class="badge badge-red">女/人</span>
+                                <span class="person-name">진희</span>
+                                <span class="person-meta">19세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-red">女</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('운월 (백리운)', '청풍단사 (靑風丹士)', '男 / 人', '27세', '일류 (一流)', '청성파 (靑城派) 연단사', '소심하고 은거하기 좋아하는 히키코모리 연단사.', '')">
+                        <li class="person-entry" onclick="openCharModal('운월 (백리운)', '청풍단사 (靑風丹士)', '男', '27세', '일류 (一流)', '청성파 (靑城派) 연단사', '소심하고 은거하기 좋아하는 히키코모리 연단사.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">운월 (백리운)</span>
                                 <span class="person-alias">「청풍단사」</span>
-                                <span class="person-meta">청성 연단사 · 27세 · 일류</span>
-                                <span class="badge badge-gold">男/人</span>
+                                <span class="person-name">운월</span>
+                                <span class="person-meta">27세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-gold">男</span>
                         </li>
                     </ul>
                 </div>
 
                 <!-- 무림세가 인물록 -->
                 <div class="person-record-group">
-                    <div class="record-category-header">武林世家 人物錄 (무림세가)</div>
+                    <div class="record-category-header">오대세가 (五大世家)</div>
                     <ul class="person-list">
-                        <li class="person-entry" onclick="openCharModal('남궁휘', '군자검 (君子劍)', '男 / 人', '28세', '일류 (一流)', '남궁세가 (南宮世家) 소가주', '정중하고 예의바르며 정의로운 도련님.', '')">
+                        <li class="person-entry" onclick="openCharModal('남궁휘', '군자검 (君子劍)', '男', '28세', '일류 (一流)', '남궁세가 (南宮世家) 소가주', '정중하고 예의바르며 정의로운 도련님.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">남궁휘</span>
                                 <span class="person-alias">「군자검」</span>
+                                <span class="person-name">남궁휘</span>
                                 <span class="person-meta">남궁 소가주 · 28세 · 일류</span>
-                                <span class="badge badge-gold">男/人</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('당이현', '유화독수 (柔花毒手)', '男 / 人', '29세', '절정 (絶頂)', '사천당가 (四川唐門) 소가주', '능글맞고 가벼우며 농담을 즐기는 한량.', '')">
+                        <li class="person-entry" onclick="openCharModal('당이현', '유화독수 (柔花毒手)', '男', '29세', '절정 (絶頂)', '사천당가 (四川唐門) 소가주', '능글맞고 가벼우며 농담을 즐기는 한량.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">당이현</span>
                                 <span class="person-alias">「유화독수」</span>
-                                <span class="person-meta">당가 소가주 · 29세 · 절정</span>
-                                <span class="badge badge-gold">男/人</span>
+                                <span class="person-name">당이현</span>
+                                <span class="person-meta">29세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('팽소화', '천뢰여걸 (天雷女傑)', '女 / 人', '32세', '절정 (絶頂)', '하북팽가 (河北彭家) 직계', '솔직하고 시원시원하며 호쾌한 여걸.', '')">
+                        <li class="person-entry" onclick="openCharModal('팽소화', '천뢰여걸 (天雷女傑)', '女', '32세', '절정 (絶頂)', '하북팽가 (河北彭家) 직계', '솔직하고 시원시원하며 호쾌한 여걸.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">팽소화</span>
                                 <span class="person-alias">「천뢰여걸」</span>
-                                <span class="person-meta">팽가 직계 · 32세 · 절정</span>
-                                <span class="badge badge-red">女/人</span>
+                                <span class="person-name">팽소화</span>
+                                <span class="person-meta">32세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-red">女</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('제갈현', '청운책사 (靑雲策士)', '男 / 人', '31세', '이류 (二流)', '제갈세가 (諸葛世家) 소가주', '오만하고 지식을 과시하는 츤데레 지략가.', '')">
+                        <li class="person-entry" onclick="openCharModal('제갈현', '청운책사 (靑雲策士)', '男', '31세', '이류 (二流)', '제갈세가 (諸葛世家) 소가주', '오만하고 지식을 과시하는 츤데레 지략가.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">제갈현</span>
                                 <span class="person-alias">「청운책사」</span>
-                                <span class="person-meta">제갈 소가주 · 31세 · 이류</span>
-                                <span class="badge badge-gold">男/人</span>
+                                <span class="person-name">제갈현</span>
+                                <span class="person-meta">31세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-gold">男</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- 사파 및 기타 인물록 -->
+                <!-- 사파 인물록 -->
                 <div class="person-record-group">
-                    <div class="record-category-header">邪派 及 諸勢力 人物錄 (사파 및 기타 세력)</div>
+                    <div class="record-category-header">사도련 (邪道聯)</div>
                     <ul class="person-list">
-                        <li class="person-entry" onclick="openCharModal('자야', '수라광견 (修羅狂犬)', '男 / 人', '47세', '화경 (化境)', '사도련 (邪道聯) 련주', '무심하고 느긋하나 싸울 땐 해맑은 싸움광.', '')">
+                        <li class="person-entry" onclick="openCharModal('자야', '수라광견 (修羅狂犬)', '男', '47세', '화경 (化境)', '사도련 (邪道聯) 련주', '무심하고 느긋하나 싸울 땐 해맑은 싸움광.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">자야</span>
                                 <span class="person-alias">「수라광견」</span>
-                                <span class="person-meta">사파련주 · 47세 · 화경</span>
-                                <span class="badge badge-gold">男/人</span>
+                                <span class="person-name">자야</span>
+                                <span class="person-meta">47세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('하해서', '벽해마령 (碧海魔靈)', '女 / 人', '39세', '절정 (絶頂)', '장강수로채 (長江水路寨) 채주', '도발적이고 거침없는 해적선장.', '')">
+                        <li class="person-entry" onclick="openCharModal('하해서', '벽해마령 (碧海魔靈)', '女', '39세', '절정 (絶頂)', '장강수로채 (長江水路寨) 채주', '도발적이고 거침없는 해적선장.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">하해서</span>
                                 <span class="person-alias">「벽해마령」</span>
-                                <span class="person-meta">장강 수로채주 · 39세 · 절정</span>
-                                <span class="badge badge-red">女/人</span>
+                                <span class="person-name">하해서</span>
+                                <span class="person-meta">39세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-red">女</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('흑영', '무면구 (無面鬼)', '男 / 人', '37세', '절정 (絶頂)', '흑점 (黑店) 대점주', '차갑고 건조하며 효율을 추구하는 살수.', '')">
+                        <li class="person-entry" onclick="openCharModal('흑영', '무면구 (無面鬼)', '男', '37세', '절정 (絶頂)', '흑점 (黑店) 대점주', '차갑고 건조하며 효율을 추구하는 살수.', '')">
                             <div class="person-entry-left">
-                                <span class="person-name">흑영</span>
                                 <span class="person-alias">「무면구」</span>
-                                <span class="person-meta">흑점 대점주 · 37세 · 절정</span>
-                                <span class="badge badge-gold">男/人</span>
+                                <span class="person-name">흑영</span>
+                                <span class="person-meta">37세</span>
                             </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
-                        </li>
-                        <li class="person-entry" onclick="openCharModal('천무영', '천마 (天魔)', '男 / 人', '미상', '현경 (玄境)', '천마신교 (天魔神敎) 교주', '감정이 희박하고 모든 것에 무심한 천마.', '')">
-                            <div class="person-entry-left">
-                                <span class="person-name">천무영</span>
-                                <span class="person-alias">「천마」</span>
-                                <span class="person-meta">마교 교주 · 미상 · 현경</span>
-                                <span class="badge badge-dark">男/人</span>
-                            </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
-                        </li>
-                        <li class="person-entry" onclick="openCharModal('혈홍매', '혈마신녀 (血魔神女)', '女 / 人', '25세', '초절정 (超絶頂)', '혈교 (血敎) 교주', '변덕스럽고 비틀린 천진난만 광인.', '')">
-                            <div class="person-entry-left">
-                                <span class="person-name">혈홍매</span>
-                                <span class="person-alias">「혈마신녀」</span>
-                                <span class="person-meta">혈교 교주 · 25세 · 초절정</span>
-                                <span class="badge badge-red">女/人</span>
-                            </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
-                        </li>
-                        <li class="person-entry" onclick="openCharModal('연홍하 (화련)', '홍염요희 (紅焰妖姬)', '女 / 靈', '미상', '초절정 (超絶頂)', '만화루 (萬花樓) 루주', '능청스럽고 매혹적인 기녀이자 정보상.', '')">
-                            <div class="person-entry-left">
-                                <span class="person-name">연홍하 (화련)</span>
-                                <span class="person-alias">「홍염요희」</span>
-                                <span class="person-meta">만화루주 · 미상 · 초절정</span>
-                                <span class="badge badge-gold">女/靈</span>
-                            </div>
-                            <span class="person-click-seal">詳情 閱覽</span>
+                            <span class="badge badge-red">女</span>
                         </li>
                     </ul>
                 </div>
+
+                <!-- 마교 인물록 -->
+                <div class="person-record-group">
+                    <div class="record-category-header">마교 (魔敎)</div>
+                    <ul class="person-list">
+                        <li class="person-entry" onclick="openCharModal('천무영', '천마 (天魔)', '男', '미상', '현경 (玄境)', '천마신교 (天魔神敎) 교주', '감정이 희박하고 모든 것에 무심한 천마.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-alias">「천마」</span>
+                                <span class="person-name">천무영</span>
+                                <span class="person-meta">???세</span>
+                            </div>
+                            <span class="badge badge-gold">男</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 혈교 인물록 -->
+                <div class="person-record-group">
+                    <div class="record-category-header">혈교 (血敎)</div>
+                    <ul class="person-list">
+                        <li class="person-entry" onclick="openCharModal('혈홍매', '혈마신녀 (血魔神女)', '女', '25세', '초절정 (超絶頂)', '혈교 (血敎) 교주', '변덕스럽고 비틀린 천진난만 광인.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-alias">「혈마신녀」</span>
+                                <span class="person-name">혈홍매</span>
+                                <span class="person-meta">25세</span>
+                            </div>
+                            <span class="badge badge-red">女</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 새외무림 인물록 -->
+                <div class="person-record-group">
+                    <div class="record-category-header">새외무림 (塞外武林)</div>
+                    <ul class="person-list">
+                    </ul>
+                </div>
+
+
+                <!-- 기타 인물록 -->
+                <div class="person-record-group">
+                    <div class="record-category-header">무소속 (無所屬)</div>
+                    <ul class="person-list">
+                        <li class="person-entry" onclick="openCharModal('연홍하 (화련)', '홍염요희 (紅焰妖姬)', '女', '미상', '초절정 (超絶頂)', '만화루 (萬花樓) 루주', '능청스럽고 매혹적인 기녀이자 정보상.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-alias">「홍염요희」</span>
+                                <span class="person-name">연홍하</span>
+                                <span class="person-meta">???세</span>
+                            </div>
+                            <span class="badge badge-gold">女</span>
+                        </li>
+                    </ul>
+                </div>
+
+
 
                 <!-- 서책 푸터 -->
                 <footer>
@@ -1260,14 +1262,14 @@
 
                 <div class="modal-info-area">
                     <div class="modal-char-detail-list">
-                        <p><strong>[신분/종족]</strong> <span id="mSpecies">-</span></p>
-                        <p><strong>[연령/연세]</strong> <span id="mAge">-</span></p>
-                        <p><strong>[무공경지]</strong> <span id="mRealm" class="highlight">-</span></p>
-                        <p><strong>[문파/소속]</strong> <span id="mFaction">-</span></p>
+                        <p><strong>[신분]</strong> <span id="mSpecies">-</span></p>
+                        <p><strong>[연령]</strong> <span id="mAge">-</span></p>
+                        <p><strong>[경지]</strong> <span id="mRealm" class="highlight">-</span></p>
+                        <p><strong>[지위]</strong> <span id="mFaction">-</span></p>
                     </div>
 
                     <div style="font-family: var(--font-title); font-weight: bold; margin-bottom: 6px; color: var(--ink-dark);">
-                        [ 人物 略歷 및 性情 ]
+                        [ 성격 ]
                     </div>
                     <div id="mDesc" class="modal-char-desc">
                         인물에 대한 상세 성격 및 성정 정보가 기재됩니다.
