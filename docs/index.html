@@ -328,11 +328,6 @@
             color: #fff; 
             border: 1px solid #631212;
         }
-        .badge-dark { 
-            background-color: var(--ink-dark); 
-            color: #e6d5b8; 
-            border: 1px solid #000;
-        }
         .badge-gold { 
             background-color: var(--gold-accent); 
             color: #fff; 
@@ -499,7 +494,7 @@
         }
 
         .record-category-header::before {
-            content: "卷";
+            content: "錄";
             font-size: 0.85rem;
             background-color: var(--ink-dark);
             color: var(--paper-bg);
@@ -592,8 +587,9 @@
             outline-offset: -5px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
             width: 100%;
-            max-width: 680px;
-            max-height: 90vh;
+	    height: 80%;
+            max-width: 700px;
+            max-height: 700vh;
             overflow-y: auto;
             padding: 28px;
             position: relative;
@@ -641,7 +637,7 @@
 
         .portrait-frame {
             width: 100%;
-            height: 220px;
+            height: 100%;
             border: 2px solid var(--border-line);
             background-color: rgba(200, 180, 150, 0.5);
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
@@ -655,7 +651,7 @@
         .portrait-frame img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: fill;
             filter: sepia(0.25) contrast(1.05);
         }
 
@@ -1066,10 +1062,10 @@
                             </div>
                             <span class="badge badge-red">女</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('청한 (철호)', '한운진인 (閑雲眞人)', '男', '53세', '초절정 (超絶頂)', '무당파 (武當派) 장로', '느긋하고 여유로우며 장난기 넘치는 도사.', '')">
+                        <li class="person-entry" onclick="openCharModal('청원 (철호)', '한운진인 (閑雲眞人)', '男', '53세', '초절정 (超絶頂)', '무당파 (武當派) 장로', '느긋하고 여유로우며 장난기 넘치는 도사.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「한운진인」</span>
-                                <span class="person-name">청한</span>
+                                <span class="person-name">청원</span>
                                 <span class="person-meta">53세</span>
                             </div>
                             <span class="badge badge-gold">男</span>
@@ -1082,20 +1078,6 @@
                             </div>
                             <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('진영', '미상', '女', '18세', '이류 (二流)', '곤륜파 (崑崙派) 제자', '우아함과 예의를 차리나 덜렁대는 아가씨.', '')">
-                            <div class="person-entry-left">
-                                <span class="person-name">진영</span>
-                                <span class="person-meta">18세</span>
-                            </div>
-                            <span class="badge badge-red">女</span>
-                        </li>
-                        <li class="person-entry" onclick="openCharModal('진희 (청애)', '미상', '女', '19세', '이류 (二流)', '종남파 (終南派) 제자', '밝고 상냥하며 우아한 햇살 같은 캐릭터.', '')">
-                            <div class="person-entry-left">
-                                <span class="person-name">진희</span>
-                                <span class="person-meta">19세</span>
-                            </div>
-                            <span class="badge badge-red">女</span>
-                        </li>
                         <li class="person-entry" onclick="openCharModal('운월 (백리운)', '청풍단사 (靑風丹士)', '男', '27세', '일류 (一流)', '청성파 (靑城派) 연단사', '소심하고 은거하기 좋아하는 히키코모리 연단사.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「청풍단사」</span>
@@ -1103,6 +1085,20 @@
                                 <span class="person-meta">27세</span>
                             </div>
                             <span class="badge badge-gold">男</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('진영', '미상', '女', '18세', '이류 (二流)', '곤륜파 (崑崙派) 제자', '우아함과 예의를 차리나 덜렁대는 아가씨.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">진영</span>
+                                <span class="person-meta">18세</span>
+                            </div>
+                            <span class="badge badge-red">女</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('현화 (청애)', '미상', '女', '19세', '이류 (二流)', '종남파 (終南派) 제자', '밝고 상냥하며 활기찬 햇살 같은 캐릭터.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">현화</span>
+                                <span class="person-meta">19세</span>
+                            </div>
+                            <span class="badge badge-red">女</span>
                         </li>
                     </ul>
                 </div>
@@ -1115,7 +1111,7 @@
                             <div class="person-entry-left">
                                 <span class="person-alias">「군자검」</span>
                                 <span class="person-name">남궁휘</span>
-                                <span class="person-meta">남궁 소가주 · 28세 · 일류</span>
+                                <span class="person-meta">28세</span>
                             </div>
                             <span class="badge badge-gold">男</span>
                         </li>
@@ -1166,7 +1162,7 @@
                             </div>
                             <span class="badge badge-red">女</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('흑영', '무면구 (無面鬼)', '男', '37세', '절정 (絶頂)', '흑점 (黑店) 대점주', '차갑고 건조하며 효율을 추구하는 살수.', '')">
+                        <li class="person-entry" onclick="openCharModal('흑영', '무면구 (無面鬼)', '女', '37세', '절정 (絶頂)', '흑점 (黑店) 대점주', '차갑고 건조하며 효율을 추구하는 살수.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「무면구」</span>
                                 <span class="person-name">흑영</span>
@@ -1174,6 +1170,30 @@
                             </div>
                             <span class="badge badge-red">女</span>
                         </li>
+                    </ul>
+                </div>
+
+                <!-- 새외무림 인물록 -->
+                <div class="person-record-group">
+                    <div class="record-category-header">새외무림 (塞外武林)</div>
+                    <ul class="person-list">
+                        <li class="person-entry" onclick="openCharModal('빙설륜', '한천군 ()', '男', '41세', '초절정 (超絶頂)', '북해빙궁 궁주', '짧고 단호하며 무뚝뚝한 북부대공.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-alias">「한천군」</span>
+                                <span class="person-name">빙설륜</span>
+                                <span class="person-meta">41세</span>
+                            </div>
+                            <span class="badge badge-red">男</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('맹호', '만수패왕 ()', '女', '39세', '절정 (絶頂)', '남먄야수궁 궁주', '야성적이고 호탕한 족장전사.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-alias">「만수패왕」</span>
+                                <span class="person-name">맹호</span>
+                                <span class="person-meta">39세</span>
+                            </div>
+                            <span class="badge badge-red">女</span>
+                        </li>
+
                     </ul>
                 </div>
 
@@ -1207,25 +1227,31 @@
                     </ul>
                 </div>
 
-                <!-- 새외무림 인물록 -->
-                <div class="person-record-group">
-                    <div class="record-category-header">새외무림 (塞外武林)</div>
-                    <ul class="person-list">
-                    </ul>
-                </div>
-
-
                 <!-- 기타 인물록 -->
                 <div class="person-record-group">
                     <div class="record-category-header">무소속 (無所屬)</div>
                     <ul class="person-list">
-                        <li class="person-entry" onclick="openCharModal('연홍하 (화련)', '홍염요희 (紅焰妖姬)', '女', '미상', '초절정 (超絶頂)', '만화루 (萬花樓) 루주', '능청스럽고 매혹적인 기녀이자 정보상.', '')">
+                        <li class="person-entry" onclick="openCharModal('연홍하 (화련)', '홍염요희 (紅焰妖姬)', '女', '미상', '초절정 (超絶頂)', '만화루 (萬花樓) 루주 겸 정보상', '능청스럽고 매혹적인 기녀이자 정보상.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「홍염요희」</span>
                                 <span class="person-name">연홍하</span>
                                 <span class="person-meta">???세</span>
                             </div>
-                            <span class="badge badge-gold">女</span>
+                            <span class="badge badge-red">女</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('천비', '미상', '女', '미상', '초미상', '떠돌이 낭인', '예의바른척 자유분방 낭인.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">천비</span>
+                                <span class="person-meta">???세</span>
+                            </div>
+                            <span class="badge badge-red">女</span>
+                        </li>
+                        <li class="person-entry" onclick="openCharModal('리수', '미상', '男', '미상', '미상', '상인', '현실적이며 능글거리고 돈밝히는 장사꾼.', '')">
+                            <div class="person-entry-left">
+                                <span class="person-name">리수</span>
+                                <span class="person-meta">???세</span>
+                            </div>
+                            <span class="badge badge-gold">男</span>
                         </li>
                     </ul>
                 </div>
@@ -1262,7 +1288,7 @@
 
                 <div class="modal-info-area">
                     <div class="modal-char-detail-list">
-                        <p><strong>[신분]</strong> <span id="mSpecies">-</span></p>
+                        <p><strong>[성별]</strong> <span id="mSex">-</span></p>
                         <p><strong>[연령]</strong> <span id="mAge">-</span></p>
                         <p><strong>[경지]</strong> <span id="mRealm" class="highlight">-</span></p>
                         <p><strong>[지위]</strong> <span id="mFaction">-</span></p>
@@ -1302,10 +1328,10 @@
         }
 
         // 제5장 인물 상세 팝업 열기 함수
-        function openCharModal(name, alias, species, age, realm, faction, desc, imgSrc) {
+        function openCharModal(name, alias, sex, age, realm, faction, desc, imgSrc) {
             document.getElementById('mName').innerText = name;
             document.getElementById('mAlias').innerText = alias !== '미상' ? alias : '';
-            document.getElementById('mSpecies').innerText = species;
+            document.getElementById('mSex').innerText = sex;
             document.getElementById('mAge').innerText = age;
             document.getElementById('mRealm').innerText = realm;
             document.getElementById('mFaction').innerText = faction;
