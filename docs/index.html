@@ -458,9 +458,9 @@
         }
 
         .secret-toggle-btn {
-            background-color: rgba(139, 30, 30, 0.1);
+            background-color: rgba(139, 30, 30, 0);
             color: var(--vermilion);
-            border: 1px dashed var(--vermilion);
+            border: 0px dashed var(--vermilion);
             padding: 8px 14px;
             font-family: var(--font-title);
             font-size: 0.95rem;
@@ -472,21 +472,14 @@
             transition: all 0.2s ease;
         }
 
-        .secret-toggle-btn:hover {
-            background-color: rgba(139, 30, 30, 0.2);
-        }
-
         .secret-content {
             display: none;
             margin-top: 10px;
             margin-bottom: 20px;
-            padding: 18px 22px;
-            background-color: rgba(223, 207, 185, 0);
-            border: 1px solid var(--border-line);
+            border: 0px solid var(--border-line);
             font-size: 0.92rem;
             color: var(--ink-dark);
             animation: fadeIn 0.3s ease-in-out;
-            box-shadow: inset 0 0 15px rgba(100, 75, 45, 0.08), 2px 2px 5px rgba(0,0,0,0.04);
             position: relative;
         }
 
@@ -806,7 +799,7 @@
                 <div class="scroll-box">
                     <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">영약 (靈藥)</h3>
 		    <p>영묘한 효험이 있는 약</p>
-		    <ul style="margin-bottom: 0px;">
+		    <ul style="margin-top: 8px;">
 			<li><strong>영단:</strong> 사람이 제조한 인공 영약 (대환단, 태청단 등)</li>
 			<li><strong>자연영약:</strong> 자연에서 탄생한 영약 (백년설삼, 만년하수오, 빙정, 영물의 내단 등)</li>
 			<li><strong>등급:</strong> 下(하급) &lt; 中(중급) &lt; 上(상급) &lt; 最상(최상급) &lt; 寶(무가지보)</li>
@@ -824,23 +817,21 @@
                     <div class="secret-box-container">
                         <button class="secret-toggle-btn" onclick="toggleSecretBox()">[ 🔒비밀자료 (祕密資料)🔒 ]</button>
                         <div id="secretBoxContent" class="secret-content">
-			    <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;"> 진실 (眞實)</h3>
+			    <h3 class="highlight" style="font-size: 1.1rem; margin-bottom: 8px;"> 진실 (眞實)</h3>
 			    <p>영물은 <strong>오랜 시간 영험한 기운을 쌓아 내단을 생성하고 인간으로 변신이 가능한 자들</strong>을 뜻하며 자연 속에 숨거나 인간들 사이에 섞여 살아간다.</p>
-			    <ul style="margin-top:8px;">
+			    <ul style="margin-top: 8px;">
 				<li><strong>특징:</strong> 불로장생, 모든 동물과 대화 가능, 인간으로 둔갑(동공, 눈 색, 머리 색은 본체의 특징을 계승)</li>
 			    </ul>
-			    <div class="scroll-box">
-				<h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">독자적인 커뮤니티</h3>
-                                <div class="community-layout">
-				    <div class="community-text">
-					<p><span class="highlight">[상징문양]</span> 월우성인 (月羽星印)</p>
-					<p><span class="highlight">[업계특징]</span> 영물 또는 영물을 아는 인간과 암호확인 후 영물들만의 물건 및 의뢰 거래</p>
-					<p><span class="highlight">[암호]</span> 달이 비친 물 위에 띄워진 깃털의 무늬는 <strong>점박이</strong> / 여우손 행동</p>
-					<p><span class="highlight">[화폐]</span> 인간화폐, 영석(靈石, 영물의 내력을 담은 돌)</p>
- 				    </div>
-				    <div class="community-img">
-					<img src="https://raw.githubusercontent.com/ssbin0507/chat_Jgh/refs/heads/main/docs/img/spirit_symbol.webp" alt="월우성인_문양" style="width: 100%; max-width: 200px; height: auto;">
-				    </div>
+			    <h3 class="highlight" style="font-size: 1.1rem; margin-top: 20px; margin-bottom: 8px;">독자적 사회 (獨自的 社會)</h3>
+			    <div class="community-layout">
+				<div class="community-text">
+				    <p><span class="highlight">[상징문양]</span> 월우성인 (月羽星印)</p>
+				    <p><span class="highlight">[업계특징]</span> 영물 또는 영물을 아는 인간과 암호확인 후 영물들만의 물건 및 의뢰 거래</p>
+				    <p><span class="highlight">[암호]</span> 달이 비친 물 위에 띄워진 깃털의 무늬는 <strong>점박이</strong> / 여우손 행동</p>
+				    <p><span class="highlight">[화폐]</span> 인간화폐, 영석(靈石, 영물의 내력을 담은 돌)</p>
+ 				</div>
+				<div class="community-img">
+				    <img src="https://raw.githubusercontent.com/ssbin0507/chat_Jgh/refs/heads/main/docs/img/spirit_symbol.webp" alt="월우성인_문양" style="width: 100%; max-width: 200px; height: auto;">
 				</div>
 			    </div>
                         </div>
@@ -855,7 +846,7 @@
 
             <!-- 제5장. 강호 인물록 -->
             <div id="p-chars" class="page-content">
-                <h2 class="chapter-title">제5장 강호의 주요 인물록</h2>
+                <h2 class="chapter-title">제5장 강호 내 주요인물록</h2>
 
                 <div class="grid-3">
                     <!-- 정파 문파 -->
