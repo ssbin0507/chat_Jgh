@@ -323,16 +323,22 @@
             box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
-        .badge-red { 
-            background-color: var(--vermilion); 
-            color: #fff; 
-            border: 1px solid #631212;
-        }
         .badge-gold { 
             background-color: var(--gold-accent); 
             color: #fff; 
             border: 1px solid #5e4713;
         }
+        .badge-black { 
+            background-color: var(--ink-dark); 
+            color: #fff; 
+            border: 1px solid #631212;
+        }
+        .badge-red { 
+            background-color: var(--vermilion); 
+            color: #fff; 
+            border: 1px solid #631212;
+        }
+
 
         /* 고서적 표 디자인 */
         .table-responsive {
@@ -484,7 +490,6 @@
             font-family: var(--font-title);
             font-size: 1.25rem;
             font-weight: 800;
-            color: var(--vermilion);
             border-bottom: 2px dashed var(--border-line);
             padding-bottom: 6px;
             margin-bottom: 12px;
@@ -525,7 +530,6 @@
         }
 
         .person-entry:hover {
-            background-color: rgba(139, 30, 30, 0.08);
             transform: translateX(4px);
         }
 
@@ -537,7 +541,7 @@
         }
 
         .person-alias {
-            font-size: 1.15rem;
+            font-size: 1.0rem;
             color: var(--vermilion);
             font-weight: 800;
             font-family: var(--font-title);
@@ -546,7 +550,7 @@
 
         .person-name {
             font-family: var(--font-title);
-            font-size: 1.0rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--ink-dark);
         }
@@ -587,7 +591,7 @@
             outline-offset: -5px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
             width: 100%;
-	    height: 80%;
+	    height: auto;
             max-width: 700px;
             max-height: 700vh;
             overflow-y: auto;
@@ -599,16 +603,16 @@
 
         .char-modal-close {
             position: absolute;
-            top: 15px;
-            right: 18px;
+            top: 5px;
+            right: 5px;
             background: transparent;
-            border: 1px solid var(--border-line);
+            border: 0px solid var(--border-line);
             color: var(--ink-dark);
             font-family: var(--font-title);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             line-height: 28px;
             text-align: center;
             cursor: pointer;
@@ -616,9 +620,7 @@
         }
 
         .char-modal-close:hover {
-            background-color: var(--vermilion);
-            color: #fff;
-            border-color: var(--vermilion);
+            color: var(--vermilion);
         }
 
         .modal-body-layout {
@@ -628,7 +630,7 @@
         }
 
         .modal-portrait-area {
-            width: 170px;
+            width: 200px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
@@ -665,6 +667,8 @@
 
         .modal-info-area {
             flex: 1;
+            align-items: center;
+            padding: 10px;
         }
 
         .modal-char-name {
@@ -682,8 +686,8 @@
 
         .modal-char-detail-list {
             margin-bottom: 15px;
-            border-bottom: 1px dashed var(--border-faded);
             padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border-faded);
         }
 
         .modal-char-detail-list p {
@@ -962,7 +966,7 @@
 
                 <div class="grid-2">
                     <div class="scroll-box">
-                        <h3 class="highlight">천마신교 (天魔神敎) / 마교 (魔敎)</h3>
+                        <h3 class="highlight">천마신교 (天魔神敎) / 마교 (魔敎) </h3>
 			<p>천마를 숭배하고 무림 전체를 삼킬 강자존을 숭상하는 거대 종교 및 마공 세력.</p>
 			<div style="text-align: center;">
 				<img src="", alt="" style="width: 70%; max-width: 300px; height: auto;">
@@ -1054,7 +1058,7 @@
                 <div class="person-record-group">
                     <div class="record-category-header">구파일방 (九派一幇)</div>
                     <ul class="person-list">
-                        <li class="person-entry" onclick="openCharModal('묘련 (연화)', '유운신니 (柔雲神尼)', '女', '69세', '화경 (化境)', '아미파 (娥眉派) 장문인', '따뜻하고 다정하며 부드러운 아주머니 말투.', '')">
+                        <li class="person-entry" onclick="openCharModal('묘련', '유운신니 (柔雲神尼)', '연화', '女', '69세', '화경', '아미파 장문인', 'ISFJ+2w1', '따뜻하고 다정하며 부드러운 아주머니', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「유운신니」</span>
                                 <span class="person-name">묘련</span>
@@ -1062,7 +1066,7 @@
                             </div>
                             <span class="badge badge-red">女</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('청원 (철호)', '한운진인 (閑雲眞人)', '男', '53세', '초절정 (超絶頂)', '무당파 (武當派) 장로', '느긋하고 여유로우며 장난기 넘치는 도사.', '')">
+                        <li class="person-entry" onclick="openCharModal('청원', '한운진인 (閑雲眞人)', '철호', '男', '53세', '초절정', '무당파 장로', 'INTP+9w8', '느긋하고 여유로우며 장난기 넘치는 도사.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「한운진인」</span>
                                 <span class="person-name">청원</span>
@@ -1199,7 +1203,7 @@
 
                 <!-- 마교 인물록 -->
                 <div class="person-record-group">
-                    <div class="record-category-header">마교 (魔敎)</div>
+                    <div class="record-category-header">사교도 (邪敎徒)</div>
                     <ul class="person-list">
                         <li class="person-entry" onclick="openCharModal('천무영', '천마 (天魔)', '男', '미상', '현경 (玄境)', '천마신교 (天魔神敎) 교주', '감정이 희박하고 모든 것에 무심한 천마.', '')">
                             <div class="person-entry-left">
@@ -1209,13 +1213,7 @@
                             </div>
                             <span class="badge badge-gold">男</span>
                         </li>
-                    </ul>
-                </div>
 
-                <!-- 혈교 인물록 -->
-                <div class="person-record-group">
-                    <div class="record-category-header">혈교 (血敎)</div>
-                    <ul class="person-list">
                         <li class="person-entry" onclick="openCharModal('혈홍매', '혈마신녀 (血魔神女)', '女', '25세', '초절정 (超絶頂)', '혈교 (血敎) 교주', '변덕스럽고 비틀린 천진난만 광인.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「혈마신녀」</span>
@@ -1269,11 +1267,10 @@
     <!-- 인물 상세 정보 모달 팝업 -->
     <div id="charModalBackdrop" class="char-modal-backdrop" onclick="closeCharModalOnBackdrop(event)">
         <div class="char-modal">
-            <button class="char-modal-close" onclick="closeCharModal()">✕</button>
+            <button class="char-modal-close" onclick="closeCharModal()">×</button>
             
             <div class="modal-char-name">
                 <span id="mName">인물명</span>
-                <span id="mAlias" style="font-size: 1.05rem; color: var(--vermilion);">외호</span>
             </div>
 
             <div class="modal-body-layout">
@@ -1281,24 +1278,21 @@
                     <div class="portrait-frame">
                         <img id="mImg" src="" alt="인물 초상화" style="display:none;">
                         <div id="mImgPlaceholder" class="portrait-placeholder">
-                            <span>[ 肖像畫 / 容貌 ]<br><br>등록된 초상화가<br>없습니다</span>
+                            <span>등록된 초상화가<br>없습니다</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-info-area">
                     <div class="modal-char-detail-list">
-                        <p><strong>[성별]</strong> <span id="mSex">-</span></p>
-                        <p><strong>[연령]</strong> <span id="mAge">-</span></p>
-                        <p><strong>[경지]</strong> <span id="mRealm" class="highlight">-</span></p>
+                        <p class="highlight"><strong>[별호]</strong> <span id="mAlias">-</span> &nbsp; <strong>[진명]</strong> <span id="mTname">-</span></p>
+                        <p><strong>[성별]</strong> <span id="mSex">-</span> &nbsp; <strong>[연령]</strong> <span id="mAge">-</span></p>
+                        <p><strong>[경지]</strong> <span id="mRealm">-</span></p>
                         <p><strong>[지위]</strong> <span id="mFaction">-</span></p>
-                    </div>
-
-                    <div style="font-family: var(--font-title); font-weight: bold; margin-bottom: 6px; color: var(--ink-dark);">
-                        [ 성격 ]
+                        <p><strong>[성격]</strong> <span id="mPerson">-</span></p>
                     </div>
                     <div id="mDesc" class="modal-char-desc">
-                        인물에 대한 상세 성격 및 성정 정보가 기재됩니다.
+                        인물에 대한 한줄 설명 및 대사.
                     </div>
                 </div>
             </div>
@@ -1328,13 +1322,15 @@
         }
 
         // 제5장 인물 상세 팝업 열기 함수
-        function openCharModal(name, alias, sex, age, realm, faction, desc, imgSrc) {
+        function openCharModal(name, alias, truename, sex, age, realm, faction, personality, desc, imgSrc) {
             document.getElementById('mName').innerText = name;
             document.getElementById('mAlias').innerText = alias !== '미상' ? alias : '';
+            document.getElementById('mTname').innerText = truename;
             document.getElementById('mSex').innerText = sex;
             document.getElementById('mAge').innerText = age;
             document.getElementById('mRealm').innerText = realm;
             document.getElementById('mFaction').innerText = faction;
+            document.getElementById('mPerson').innerText = personality;
             document.getElementById('mDesc').innerText = desc;
 
             const imgEl = document.getElementById('mImg');
