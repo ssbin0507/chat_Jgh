@@ -328,11 +328,6 @@
             color: #fff; 
             border: 1px solid #5e4713;
         }
-        .badge-black { 
-            background-color: var(--ink-dark); 
-            color: #fff; 
-            border: 1px solid #631212;
-        }
         .badge-red { 
             background-color: var(--vermilion); 
             color: #fff; 
@@ -866,9 +861,9 @@
 
                 <div class="scroll-box">
                     <h3 class="highlight" style="font-size:1.1rem; margin-bottom:8px;">속성 (屬性)</h3>
-                    <p><strong>[계열]</strong> 正(정기·중정·벽사·안정) | 魔(기·폭주·침식·패도) | 無(중립·무속성)</p>
-                    <p><strong>[종류]</strong> 陰(음한·냉기·태음) | 陽(양강·열기·순양) | 毒(독기·독공/내력에 독성혼입) | 神(정신/심상) | 淸(청정/내력 강제로 순수유지·이질적기운+불순물 배척)</p>
-                    <p style="color: var(--vermilion); margin-top: 5px;"><strong>[상극]</strong> 正(정) ↔ 魔(마) | 陰(음) ↔ 陽(양) | 毒(독) ↔ 淸(청)</p>
+                    <p><strong>[계열]</strong> 正(정도·안정) | 魔(마·침식) | 無(중립·무속성)</p>
+                    <p><strong>[종류]</strong> 陰(음·냉기) | 陽(양·열기) | 毒(독/내력에 독성혼입) | 神(정신·심상) | 淸(청정·순수/내력 이질적기운 및 불순물 배척)</p>
+                    <p><strong>[상극]</strong> 正(정) ↔ 魔(마) | 陰(음) ↔ 陽(양) | 毒(독) ↔ 淸(청)</p>
 <p style="font-size: 0.85rem; color: var(--vermilion);">※ 상극 무공 동시 습득 시 <strong>내력충돌 및 주화입마</strong> → 상극 무공으로 전환 시 <strong>기존 내공 폐기 필수</strong> (예외로 <strong>현경</strong>은 일부 도전, <strong>생사경</strong>은 자유습득 가능)</p>
                 </div>
 
@@ -881,48 +876,57 @@
                                 <tr>
                                     <th>경지</th>
                                     <th>설명</th>
+                                    <th>특징</th>
                                     <th>진입 조건</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td style="text-align: center;"><strong>삼류</strong></td>
-                                    <td>갓 입문한 자</td>
+                                    <td>갓 입문한 경지</td>
+                                    <td>운기</td>
                                     <td>X</td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;"><strong>이류</strong></td>
-                                    <td>단전 형성이 완료된 자</td>
+                                    <td>무공을 어느정도 숙지한 경지</td>
+                                    <td>단전, 무공</td>
                                     <td>X</td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;"><strong>일류</strong></td>
-                                    <td>무기나 신체를 기로 강화할 수 있는 자</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;"><strong>절정</strong></td>
-                                    <td>검기를 사용할 수 있으며 내공운용을 자유자재로 할 수 있는 자</td>
+                                    <td>무공을 자유자재로 운용하는 경지</td>
+                                    <td>기로 무기강화</td>
                                     <td>X (범인의 한계점)</td>
                                 </tr>
                                 <tr>
+                                    <td style="text-align: center;"><strong>절정</strong></td>
+                                    <td>자신의 기를 자유자재로 다루는 경지</td>
+                                    <td>검기, 검사</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
                                     <td style="text-align: center;"><strong>초절정</strong></td>
-                                    <td>환골탈태를 경험했고 검강과 호신강기를 사용할 수 있는 자</td>
+                                    <td>기존 무공을 극한까지 다루는 경지</td>
+                                    <td>활골탈태, 검강, 호신강기</td>
                                     <td>주력 무공 대성, 초식의 원리 체득 및 응용 가능</td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;"><strong>조화경(화경)</strong></td>
-                                    <td>반로환동을 경험했으며 모든 무공에 통달했고 허공섭물을 사용할 수 있는 자</td>
+                                    <td>손짓으로 무공을 펼칠 수 있는 절대 경지</td>
+                                    <td>반로환동, 허공섭물, 이기어검술</td>
                                     <td>무공 2개이상 대성, 자신만의 무도 적립, 삼화취정</td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;"><strong>현경</strong></td>
-                                    <td>무형검을 사용할 수 있는 자</td>
+                                    <td>마음가는대로 최상의 묘수가 펼쳐지는 최종 경지</td>
+                                    <td>무형검</td>
                                     <td>원만 무공 보유, 무공의 본질에 대한 깨달음, 독자적 무공체계 완성</td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;"><strong>생사경 </strong></td>
-                                    <td>수명과 인간의 한계를 초월하여 불로장생하는 살아있는 신선으로 여겨지는 자</td>
+                                    <td>인간의 한계를 초월한 신화적 경지</td>
+                                    <td>우화등선, 생사초월</td>
                                     <td>상극 무공 사용, 생사·육체한계·자연이치·우주섭리에 대한 깨달음</td>
                                 </tr>
                             </tbody>
