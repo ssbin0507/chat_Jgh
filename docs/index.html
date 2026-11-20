@@ -21,6 +21,7 @@
             --ink-black: #1a1612;
             --ink-dark: #0a0806;
             --ink-light: #3d352e;
+	    --ing-gray: #8C7B6B;
             --vermilion: #8b1e1e;       /* 주사/인장 붉은색 */
             --vermilion-light: #a62b2b;
             --gold-accent: #8c6d23;      /* 금박/황금색 느낌 */
@@ -795,6 +796,37 @@
             }
         }
 
+        /* ------------------------------------------
+           [모달창 전용 비밀 단어 숨김/토글 스타일]
+        ------------------------------------------ */
+        .modal-secret-toggle {
+            color: var(--ing-gray);
+            cursor: pointer;
+            font-weight: bold;
+            border-bottom: 1px dashed var(--ing-gray);
+            padding: 0 3px;
+            transition: all 0.2s ease;
+        }
+        .modal-secret-toggle:hover {
+            background-color: rgba(139, 30, 30, 0.1);
+        }
+        .modal-secret-word {
+            display: inline-block;
+            max-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            vertical-align: bottom;
+            transition: max-width 0.4s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+            color: var(--vermilion);
+            font-weight: bold;
+        }
+        .modal-secret-word.revealed {
+            max-width: 200px; /* 나타날 때 확보할 최대 너비 */
+            opacity: 1;
+            margin-left: 4px;
+        }
+
         /* 모바일을 세로로 들고 있을 때도 강제로 가로모드(90도 회전)로 표시 */
         @media (max-width: 900px) and (orientation: portrait) {
             body {
@@ -1097,7 +1129,7 @@
                             </div>
                             <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('백한', '광매검 (狂梅劍)', '男', '28세', '일류 (一流)', '화산파 (華山派) 제자', '호전적이고 거칠며 직설적인 양아치 형님.', '')">
+                        <li class="person-entry" onclick="openCharModal('백한', '광매검 (狂梅劍)', '채련', '男', '28세', '일류', '화산파 대제자', 'ESTP+8w7', '호전적이고 거칠며 직설적인 양아치 형님.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「광매검」</span>
                                 <span class="person-name">백한</span>
@@ -1105,7 +1137,7 @@
                             </div>
                             <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('운월 (백리운)', '청풍단사 (靑風丹士)', '男', '27세', '일류 (一流)', '청성파 (靑城派) 연단사', '소심하고 은거하기 좋아하는 히키코모리 연단사.', '')">
+                        <li class="person-entry" onclick="openCharModal('운월', '청풍단사 (靑風丹士)', '백리운', '男', '27세', '일류', '청성파 연단사', 'INTP+5w6', '소심하고 은거하기 좋아하는 히키코모리 연단사.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「청풍단사」</span>
                                 <span class="person-name">운월</span>
@@ -1113,14 +1145,14 @@
                             </div>
                             <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('진영', '미상', '女', '18세', '이류 (二流)', '곤륜파 (崑崙派) 제자', '우아함과 예의를 차리나 덜렁대는 아가씨.', '')">
+                        <li class="person-entry" onclick="openCharModal('진영', '미상', '모용소린', '女', '18세', '이류', '곤륜파 제자', 'ESTJ+3w2', '우아함과 예의바르지만 자주 덜렁대는 아가씨.', '')">
                             <div class="person-entry-left">
                                 <span class="person-name">진영</span>
                                 <span class="person-meta">18세</span>
                             </div>
                             <span class="badge badge-red">女</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('현화 (청애)', '미상', '女', '19세', '이류 (二流)', '종남파 (終南派) 제자', '밝고 상냥하며 활기찬 햇살 같은 캐릭터.', '')">
+                        <li class="person-entry" onclick="openCharModal('현화', '미상', '청애', '女', '19세', '이류', '종남파 제자', 'ESFJ+2w1', '밝고 상냥하며 활기찬 햇살같은 소녀.', '')">
                             <div class="person-entry-left">
                                 <span class="person-name">현화</span>
                                 <span class="person-meta">19세</span>
@@ -1134,7 +1166,7 @@
                 <div class="person-record-group">
                     <div class="record-category-header">오대세가 (五大世家)</div>
                     <ul class="person-list">
-                        <li class="person-entry" onclick="openCharModal('남궁휘', '군자검 (君子劍)', '男', '28세', '일류 (一流)', '남궁세가 (南宮世家) 소가주', '정중하고 예의바르며 정의로운 도련님.', '')">
+                        <li class="person-entry" onclick="openCharModal('남궁휘', '군자검 (君子劍)', '남궁휘', '男', '28세', '일류', '남궁세가 소가주', 'ENFJ+1w2', '정중하고 예의바르며 정의로운 도련님.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「군자검」</span>
                                 <span class="person-name">남궁휘</span>
@@ -1142,7 +1174,7 @@
                             </div>
                             <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('당이현', '유화독수 (柔花毒手)', '男', '29세', '절정 (絶頂)', '사천당가 (四川唐門) 소가주', '능글맞고 가벼우며 농담을 즐기는 한량.', '')">
+                        <li class="person-entry" onclick="openCharModal('당이현', '유화독수 (柔花毒手)', '당이현', '男', '29세', '절정', '사천당가 소가주', 'ENTP+7w8', '능글맞고 가벼우며 농담을 즐기는 한량.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「유화독수」</span>
                                 <span class="person-name">당이현</span>
@@ -1150,7 +1182,7 @@
                             </div>
                             <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('팽소화', '천뢰여걸 (天雷女傑)', '女', '32세', '절정 (絶頂)', '하북팽가 (河北彭家) 직계', '솔직하고 시원시원하며 호쾌한 여걸.', '')">
+                        <li class="person-entry" onclick="openCharModal('팽소화', '천뢰여걸 (天雷女傑)', '팽소화', '女', '32세', '절정', '하북팽가 직계', 'ESTJ+8w9', '솔직하고 시원시원하며 호쾌한 여걸.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「천뢰여걸」</span>
                                 <span class="person-name">팽소화</span>
@@ -1158,7 +1190,7 @@
                             </div>
                             <span class="badge badge-red">女</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('제갈현', '청운책사 (靑雲策士)', '男', '31세', '이류 (二流)', '제갈세가 (諸葛世家) 소가주', '오만하고 지식을 과시하는 츤데레 지략가.', '')">
+                        <li class="person-entry" onclick="openCharModal('제갈현', '청운책사 (靑雲策士)', '제갈현', '男', '31세', '이류', '제갈세가 소가주', 'INTJ+3w4', '오만하고 지식을 과시하는 츤데레 지략가.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「청운책사」</span>
                                 <span class="person-name">제갈현</span>
@@ -1173,7 +1205,7 @@
                 <div class="person-record-group">
                     <div class="record-category-header">사도련 (邪道聯)</div>
                     <ul class="person-list">
-                        <li class="person-entry" onclick="openCharModal('자야', '수라광견 (修羅狂犬)', '男', '47세', '화경 (化境)', '사도련 (邪道聯) 련주', '무심하고 느긋하나 싸울 땐 해맑은 싸움광.', '')">
+                        <li class="person-entry" onclick="openCharModal('자야', '수라광견 (修羅狂犬)', '자야', '男', '47세', '화경', '사도련주, 수라방 방주', 'ISTP+8w7', '무심하고 느긋하나 싸울 땐 해맑은 싸움광.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「수라광견」</span>
                                 <span class="person-name">자야</span>
@@ -1181,7 +1213,7 @@
                             </div>
                             <span class="badge badge-gold">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('하해서', '벽해마령 (碧海魔靈)', '女', '39세', '절정 (絶頂)', '장강수로채 (長江水路寨) 채주', '도발적이고 거침없는 해적선장.', '')">
+                        <li class="person-entry" onclick="openCharModal('하해서', '벽해마령 (碧海魔靈)', '하해서', '女', '39세', '절정', '장강수로채 채주', 'ESTP+8w7', '도발적이고 거침없는 해적선장.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「벽해마령」</span>
                                 <span class="person-name">하해서</span>
@@ -1189,7 +1221,7 @@
                             </div>
                             <span class="badge badge-red">女</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('흑영', '무면구 (無面鬼)', '女', '37세', '절정 (絶頂)', '흑점 (黑店) 대점주', '차갑고 건조하며 효율을 추구하는 살수.', '')">
+                        <li class="person-entry" onclick="openCharModal('흑영', '무면구 (無面鬼)', '흑영', '女', '37세', '절정', '흑점 대점주', 'INTJ+5w6', '차갑고 건조하며 효율을 추구하는 살수.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「무면구」</span>
                                 <span class="person-name">흑영</span>
@@ -1204,7 +1236,7 @@
                 <div class="person-record-group">
                     <div class="record-category-header">새외무림 (塞外武林)</div>
                     <ul class="person-list">
-                        <li class="person-entry" onclick="openCharModal('빙설륜', '한천군 ()', '男', '41세', '초절정 (超絶頂)', '북해빙궁 궁주', '짧고 단호하며 무뚝뚝한 북부대공.', '')">
+                        <li class="person-entry" onclick="openCharModal('빙설륜', '한천군 (寒天君)', '빙설륜', '男', '41세', '초절정', '북해빙궁 궁주', 'ISTJ+1w9', '짧고 단호하며 무뚝뚝한 북부대공.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「한천군」</span>
                                 <span class="person-name">빙설륜</span>
@@ -1212,7 +1244,7 @@
                             </div>
                             <span class="badge badge-red">男</span>
                         </li>
-                        <li class="person-entry" onclick="openCharModal('맹호', '만수패왕 ()', '女', '39세', '절정 (絶頂)', '남먄야수궁 궁주', '야성적이고 호탕한 족장전사.', '')">
+                        <li class="person-entry" onclick="openCharModal('맹호', '만수패왕 (萬獸霸王)', '맹호', '女', '39세', '절정', '남먄야수궁 궁주', 'ESTP+8w7', '야성적이고 호탕한 족장전사.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「만수패왕」</span>
                                 <span class="person-name">맹호</span>
@@ -1228,7 +1260,7 @@
                 <div class="person-record-group">
                     <div class="record-category-header">사교도 (邪敎徒)</div>
                     <ul class="person-list">
-                        <li class="person-entry" onclick="openCharModal('천무영', '천마 (天魔)', '男', '미상', '현경 (玄境)', '천마신교 (天魔神敎) 교주', '감정이 희박하고 모든 것에 무심한 천마.', '')">
+                        <li class="person-entry" onclick="openCharModal('천무영', '천마 (天魔)', '男', '미상', '현경', '천마신교 교주', '감정이 희박하고 모든 것에 무심한 천마.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「천마」</span>
                                 <span class="person-name">천무영</span>
@@ -1237,7 +1269,7 @@
                             <span class="badge badge-gold">男</span>
                         </li>
 
-                        <li class="person-entry" onclick="openCharModal('혈홍매', '혈마신녀 (血魔神女)', '女', '25세', '초절정 (超絶頂)', '혈교 (血敎) 교주', '변덕스럽고 비틀린 천진난만 광인.', '')">
+                        <li class="person-entry" onclick="openCharModal('혈홍매', '혈마신녀 (血魔神女)', '女', '25세', '초절정', '혈교 교주', '변덕스럽고 비틀린 천진난만 광인.', '')">
                             <div class="person-entry-left">
                                 <span class="person-alias">「혈마신녀」</span>
                                 <span class="person-name">혈홍매</span>
@@ -1308,7 +1340,7 @@
 
                 <div class="modal-info-area">
                     <div class="modal-char-detail-list">
-                        <p class="highlight"><strong>[별호]</strong> <span id="mAlias">-</span> &nbsp; <strong>[진명]</strong> <span id="mTname">-</span></p>
+                        <p><strong>[별호]</strong> <span id="mAlias">-</span> &nbsp; <span id="mTnameRow" style="display: none;"><strong >[본명]</strong> <span id="mTname">-</span></span></p>
                         <p><strong>[성별]</strong> <span id="mSex">-</span> &nbsp; <strong>[연령]</strong> <span id="mAge">-</span></p>
                         <p><strong>[경지]</strong> <span id="mRealm">-</span></p>
                         <p><strong>[지위]</strong> <span id="mFaction">-</span></p>
@@ -1338,27 +1370,58 @@
             event.currentTarget.classList.add('active');
         }
 
-        // 비밀박스 토글 함수
+        // 비밀박스 토글 함수 (4페이지)
         function toggleSecretBox() {
             const secretContent = document.getElementById('secretBoxContent');
             secretContent.classList.toggle('show');
         }
 
+        // 모달창 내 비밀 단어 토글 함수 (5페이지 캐릭터 상세용)
+        function toggleModalSecret(element) {
+            const secretWordEl = element.nextElementSibling;
+            if (secretWordEl) {
+                secretWordEl.classList.toggle('revealed');
+            }
+        }
+
         // 제5장 인물 상세 팝업 열기 함수
         function openCharModal(name, alias, truename, sex, age, realm, faction, personality, desc, imgSrc) {
+	    const tnameRow = document.getElementById('mTnameRow');
             document.getElementById('mName').innerText = name;
-            document.getElementById('mAlias').innerText = alias !== '미상' ? alias : '';
-            document.getElementById('mTname').innerText = truename;
+            document.getElementById('mAlias').innerText = alias !== '미상' ? alias : '-';
+            const tnameContainer = document.getElementById('mTname');
             document.getElementById('mSex').innerText = sex;
-            document.getElementById('mAge').innerText = age;
-            document.getElementById('mRealm').innerText = realm;
-            document.getElementById('mFaction').innerText = faction;
-            document.getElementById('mPerson').innerText = personality;
+            const tageContainer = document.getElementById('mAge');
+            const trealmContainer = document.getElementById('mRealm');
+            const tfactionContainer = document.getElementById('mFaction');
+            const tpersonalityContainer = document.getElementById('mPerson');
             document.getElementById('mDesc').innerText = desc;
-
             const imgEl = document.getElementById('mImg');
             const placeholderEl = document.getElementById('mImgPlaceholder');
 
+	    if (name && name !== truename) {
+		    tnameRow.style.display = 'inline';
+		    tnameContainer.innerHTML = `<span class="modal-secret-toggle" onclick="toggleModalSecret(this)">???</span><span class="modal-secret-word">${truename}</span>`;
+	    } else {
+		tnameRow.style.display = 'none';
+		tnameContainer.innerHTML = '';
+	    }
+
+	    if(name && (name == '백한') || name == '진영') {
+		tnameContainer.innerHTML = `<span class="modal-secret-toggle" onclick="toggleModalSecret(this)">???</span><span class="modal-secret-word">${truename}</span>`;
+	    }
+	    else
+	    {
+		tnameContainer.innerText = truename;
+	    }
+
+	    tageContainer.innerText = age;
+	    trealmContainer.innerText = realm;
+	    tfactionContainer.innerText = faction;
+	    tpersonalityContainer.innerText = personality;
+
+
+	    // 이미지 출력
             if (imgSrc && imgSrc.trim() !== '') {
                 imgEl.src = imgSrc;
                 imgEl.style.display = 'block';
